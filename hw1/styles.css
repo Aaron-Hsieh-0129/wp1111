@@ -337,6 +337,121 @@ img {
     margin-right: 0.8rem;
 }
 
+.microphone-detail {
+    display: none;
+}
+
+.button-setting-microphone:hover .microphone-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-1rem, -6rem);
+    height: 2rem;
+    width: 4rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.videocam-detail {
+    display: none;
+}
+
+.button-setting-videocam:hover .videocam-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 2rem;
+    width: 6rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.hand-detail {
+    display: none;
+}
+
+.button-setting-hand:hover .hand-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 2rem;
+    width: 6rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+
+.present-detail {
+    display: none;
+}
+
+.button-setting-present:hover .present-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 2rem;
+    width: 8rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.more-detail {
+    display: none;
+}
+
+.button-setting-more:hover .more-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 2rem;
+    width: 5rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.handset-setting {
+    display: flex;
+    background-color: rgb(60, 64, 67);
+    width: 5.5rem;
+    height: 3.2rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40%;
+    margin-right: 0.8rem;
+    background-color: rgb(233, 68, 54);
+}
+
+.handset-detail {
+    display: none;
+}
+
+.button-setting-handset:hover .handset-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 2rem;
+    width: 7rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
 .control {
     display: flex;
     justify-content: center;
@@ -348,6 +463,91 @@ img {
     align-items: center;
     justify-content: center;
     margin-right: 1.8rem;
+}
+
+.info-detail {
+    display: none;
+}
+
+.button-setting-info:hover .info-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 2rem;
+    width: 7rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.group-detail {
+    display: none;
+}
+
+.button-setting-group:hover .group-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 2rem;
+    width: 7rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.chat-detail {
+    display: none;
+}
+
+.button-setting-chat:hover .chat-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(0rem, -6rem);
+    height: 2rem;
+    width: 4rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.activity-detail {
+    display: none;
+}
+
+.button-setting-activity:hover .activity-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 2rem;
+    width: 5rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.lock-detail {
+    display: none;
+}
+
+.button-setting-lock:hover .lock-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 2rem;
+    width: 5rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
 }
 
 .group-people {
