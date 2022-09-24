@@ -32,6 +32,95 @@ img {
     align-items: center;
 }
 
+/* host toolbox css */
+.tool-box {
+    display: none;
+}
+
+.headshot-self:hover .tool-box {
+    display: flex;
+    position: absolute;
+    width: 5rem;
+    height: 2rem;
+    border-radius: 30%;
+    background-color: rgb(60, 64, 67);
+    justify-content: center;
+    align-items: center;
+    opacity: 0.5;
+}
+
+.headshot-self:hover .tool-box:hover {
+    opacity: 0.8;
+}
+
+.unpin-words {
+    display: none;
+}
+
+.headshot-self:hover .tool-box:hover .unpin:hover .unpin-words {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 1.8rem;
+    width: 3.8rem;
+    border-radius: 10%;
+    background-color: rgb(60, 64, 67);
+    transform: translate(-1.5rem, -4rem);
+    opacity: 0.8;
+}
+
+.unpin-words-detail {
+    display: flex;
+    color: white;
+}
+
+.unblock-words {
+    display: none;
+}
+
+.headshot-self:hover .tool-box:hover .unblock:hover .unblock-words {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 1.8rem;
+    width: 10rem;
+    border-radius: 10%;
+    background-color: rgb(60, 64, 67);
+    transform: translate(-4rem, -4rem);
+    opacity: 0.8;
+}
+
+.unblock-words-detail {
+    display: flex;
+    color: white;
+}
+
+
+.minimize-words {
+    display: none;
+}
+
+.headshot-self:hover .tool-box:hover .minimize:hover .minimize-words {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 1.8rem;
+    width: 5rem;
+    border-radius: 10%;
+    background-color: rgb(60, 64, 67);
+    transform: translate(-1.5rem, -4rem);
+    opacity: 0.8;
+}
+
+.minimize-words-detail {
+    display: flex;
+    color: white;
+}
+/* end of toolbox */
+
 .pin-self {
     display: flex;
     position: absolute;
@@ -111,6 +200,91 @@ img {
     justify-content: center;
     align-items: center;
 }
+
+/* headshot toolbox */
+.headshot:hover .tool-box {
+    display: flex;
+    position: absolute;
+    width: 4rem;
+    height: 1.5rem;
+    border-radius: 30%;
+    background-color: rgb(60, 64, 67);
+    justify-content: center;
+    align-items: center;
+    opacity: 0.5;
+}
+
+.headshot:hover .tool-box:hover {
+    opacity: 0.8;
+}
+
+.unpin-words {
+    display: none;
+}
+
+.headshot:hover .tool-box:hover .unpin:hover .unpin-words {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 1.8rem;
+    width: 3.8rem;
+    border-radius: 10%;
+    background-color: rgb(60, 64, 67);
+    transform: translate(-1.5rem, -4rem);
+    opacity: 0.8;
+}
+
+.unpin-words-detail {
+    display: flex;
+    color: white;
+}
+
+.unblock-words {
+    display: none;
+}
+
+.headshot:hover .tool-box:hover .unblock:hover .unblock-words {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 1.8rem;
+    width: 10rem;
+    border-radius: 10%;
+    background-color: rgb(60, 64, 67);
+    transform: translate(-4rem, -4rem);
+    opacity: 0.8;
+}
+
+.unblock-words-detail {
+    display: flex;
+    color: white;
+}
+
+
+.minimize-words {
+    display: none;
+}
+
+.headshot:hover .tool-box:hover .minimize:hover .minimize-words {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 1.8rem;
+    width: 5rem;
+    border-radius: 10%;
+    background-color: rgb(60, 64, 67);
+    transform: translate(-1.5rem, -4rem);
+    opacity: 0.8;
+}
+
+.minimize-words-detail {
+    display: flex;
+    color: white;
+}
+/* end toolbox */
 
 .name-member {
     display: flex;
