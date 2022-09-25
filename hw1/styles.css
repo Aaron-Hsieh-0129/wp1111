@@ -23,7 +23,7 @@ img {
     grid-column: 1 / 2;
     flex-direction: row;
 }
-/*TODO*/
+
 .headshot-self {
     display: flex;
     position: absolute;
@@ -123,7 +123,7 @@ img {
     color: white;
 }
 /* end of toolbox */
-/*TODO*/
+
 .pin-self {
     display: flex;
     position: absolute;
@@ -147,7 +147,7 @@ img {
     font-size: 2.8rem;
     overflow: auto;
 }
-/*TODO*/
+
 .mute-self {
     display: flex;
     position: absolute;
@@ -689,14 +689,3 @@ img {
         grid-template-rows:  18fr 1fr;
     }
 }
-
-/* @media (min-width: 1500px) {
-    .meet_root {
-        display: grid;
-        position: absolute;
-        top: 0;
-        left: 0;
-        grid-template-columns: 2fr 1fr;
-        grid-template-rows:  18fr 1fr;
-    }
-} */
