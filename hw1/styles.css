@@ -382,7 +382,7 @@ img {
     border-radius: 15%;
     transform: translate(-2rem, -6rem);
     height: 2rem;
-    width: 6rem;
+    width: 7rem;
     align-items: center;
     justify-content: center;
     background-color: rgb(60, 64, 67);
@@ -491,9 +491,9 @@ img {
     position: absolute;
     color: white;
     border-radius: 15%;
-    transform: translate(-2rem, -6rem);
+    transform: translate(-1rem, -6rem);
     height: 2rem;
-    width: 7rem;
+    width: 5rem;
     align-items: center;
     justify-content: center;
     background-color: rgb(60, 64, 67);
@@ -508,7 +508,7 @@ img {
     position: absolute;
     color: white;
     border-radius: 15%;
-    transform: translate(0rem, -6rem);
+    transform: translate(-1rem, -6rem);
     height: 2rem;
     width: 4rem;
     align-items: center;
