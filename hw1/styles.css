@@ -152,7 +152,7 @@ img {
     height: 2rem;
     justify-self: center;
     align-self: flex-end;
-    transform: translate(-1rem, -20rem)
+    transform: translate(-1rem, -20rem);
 }
 
 .meet_member {
@@ -326,6 +326,17 @@ img {
     align-items: center;
 }
 
+.button-setting-change {
+    display: flex;
+    background-color: rgb(60, 64, 67);
+    width: 3rem;
+    height: 3rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 0.8rem;
+}
+
 .button-setting {
     display: flex;
     background-color: rgb(60, 64, 67);
@@ -337,11 +348,30 @@ img {
     margin-right: 0.8rem;
 }
 
+.checkbox-microphone[type="checkbox"] {
+    content: url("./images/mute-backgound.png");
+    appearance: none;
+    display: block;
+    width: 65px;
+    height: 65px;
+} 
+
+.checkbox-microphone[type="checkbox"]:checked {
+    content: url("./images/microphone.png");
+    width: 30px;
+    height: 30px;
+    color: rgb(60, 64, 67);
+}
+
 .microphone-detail {
     display: none;
 }
 
-.button-setting-microphone:hover .microphone-detail{
+.microphone-detail-uncheck {
+    display: none;
+}
+
+.button-setting-microphone:hover:has(.checkbox-microphone[type="checkbox"]:checked) .microphone-detail {
     display: flex;
     position: absolute;
     color: white;
@@ -354,9 +384,88 @@ img {
     background-color: rgb(60, 64, 67);
 }
 
+.button-setting-microphone:hover:has(.checkbox-microphone[type="checkbox"]) .microphone-detail-uncheck {
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(0rem, -7rem);
+    height: 2rem;
+    width: 4.5rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.button-setting-microphone:hover:has(.checkbox-microphone[type="checkbox"]) .microphone-detail {
+    display: none;
+}
+
+.button-setting-microphone:hover:has(.checkbox-microphone[type="checkbox"]:checked) .microphone-detail-uncheck {
+    display: none;
+}
+
+/* .checkbox-microphone[type="checkbox"]:checked .mute-self {
+    display: none;
+} */
+
+.checkbox-videocam[type="checkbox"] {
+    content: url("./images/cameraoff-background.png");
+    appearance: none;
+    display: block;
+    width: 60px;
+    height: 60px;
+} 
+
+.checkbox-videocam[type="checkbox"]:checked {
+    content: url("./images/videocam.png");
+    width: 30px;
+    height: 30px;
+    color: rgb(60, 64, 67);
+}
+
 .videocam-detail {
     display: none;
 }
+
+.videocam-detail-uncheck {
+    display: none;
+}
+
+.button-setting-videocam:hover:has(.checkbox-videocam[type="checkbox"]:checked) .videocam-detail {
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 2rem;
+    width: 6rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.button-setting-videocam:hover:has(.checkbox-videocam[type="checkbox"]) .videocam-detail-uncheck {
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-1rem, -7rem);
+    height: 2rem;
+    width: 6rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.button-setting-videocam:hover:has(.checkbox-videocam[type="checkbox"]) .videocam-detail {
+    display: none;
+}
+
+.button-setting-videocam:hover:has(.checkbox-videocam[type="checkbox"]:checked) .videocam-detail-uncheck {
+    display: none;
+}
+
 
 .button-setting-videocam:hover .videocam-detail{
     display: flex;
@@ -426,7 +535,7 @@ img {
 .handset-setting {
     display: flex;
     background-color: rgb(60, 64, 67);
-    width: 5.5rem;
+    width: 5rem;
     height: 3.2rem;
     align-items: center;
     justify-content: center;
@@ -445,8 +554,8 @@ img {
     color: white;
     border-radius: 15%;
     transform: translate(-2rem, -6rem);
-    height: 2rem;
-    width: 7rem;
+    height: 1.8rem;
+    width: 6.5rem;
     align-items: center;
     justify-content: center;
     background-color: rgb(60, 64, 67);
