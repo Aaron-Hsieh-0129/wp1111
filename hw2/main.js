@@ -266,8 +266,6 @@ const addPeople = () => {
 
     let submitButton = document.querySelector("#submit");
     submitButton.addEventListener("click", getValueAndClose);
-
-    changeLayout();
 }
 
 const getValueAndClose = (e) => {
