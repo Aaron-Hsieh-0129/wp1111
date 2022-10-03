@@ -1,0 +1,771 @@
+body {    
+    background-color: rgb(32, 33, 36);
+}
+
+img {
+    border-radius: 50%;
+}
+
+dialog {
+    border: none;
+    position: absolute;
+    z-index: 10;
+    box-shadow: 0 2px 6px #ccc;
+    border-radius: 10px;
+    bottom: 40%;
+    left: 15%;
+    width: 30%;
+    height: 30%;
+    opacity: 80%;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#input1 {
+    font-size: 1.2rem;
+}
+
+#input2 {
+    font-size: 1.2rem;
+}
+
+#choose {
+    bottom: 30%;
+    font-size: 1.2rem;
+    
+}
+
+#input1-box {
+    size: 2rem;
+}
+
+#input2-box {
+    size: 2rem;
+}
+
+#submit {
+    display: flex;
+    justify-content: flex-end;
+    bottom: 5%;
+}
+
+.meet_root {
+    display: grid;
+    position: absolute;
+    top: 0;
+    left: 0;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 13fr 1fr;
+    width: 100%;
+}
+
+
+.host {
+    display: flex;
+    justify-content: space-between;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    flex-direction: row;
+}
+
+.headshot-self {
+    display: flex;
+    position: absolute;
+    /* flex-wrap: nowrap; */
+    justify-content: center;
+    justify-self: flex-end;
+    align-items: center;
+    align-self: center;
+    left: 30%;
+}
+
+/* host toolbox css */
+.tool-box {
+    display: none;
+}
+
+.headshot-self:hover .tool-box {
+    display: flex;
+    position: absolute;
+    width: 6rem;
+    height: 2rem;
+    border-radius: 30%;
+    background-color: rgb(60, 64, 67);
+    justify-content: space-around;
+    align-items: center;
+    opacity: 0.5;
+}
+
+.headshot-self:hover .tool-box:hover {
+    opacity: 0.8;
+}
+
+.unpin-words {
+    display: none;
+}
+
+.headshot-self:hover .tool-box:hover .unpin:hover .unpin-words {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 1.8rem;
+    width: 3.8rem;
+    border-radius: 10%;
+    background-color: rgb(60, 64, 67);
+    transform: translate(-1.5rem, -4rem);
+    opacity: 0.8;
+}
+
+.unpin-words-detail {
+    display: flex;
+    color: white;
+}
+
+.unblock-words {
+    display: none;
+}
+
+.headshot-self:hover .tool-box:hover .unblock:hover .unblock-words {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 1.8rem;
+    width: 10rem;
+    border-radius: 10%;
+    background-color: rgb(60, 64, 67);
+    transform: translate(-4rem, -4rem);
+    opacity: 0.8;
+}
+
+.unblock-words-detail {
+    display: flex;
+    color: white;
+}
+
+
+.minimize-words {
+    display: none;
+}
+
+.headshot-self:hover .tool-box:hover .minimize:hover .minimize-words {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 1.8rem;
+    width: 5rem;
+    border-radius: 10%;
+    background-color: rgb(60, 64, 67);
+    transform: translate(-1.5rem, -4rem);
+    opacity: 0.8;
+}
+
+.minimize-words-detail {
+    display: flex;
+    color: white;
+}
+/* end of toolbox */
+
+.pin-self {
+    display: flex;
+    position: absolute;
+    width: 15rem;
+    height: 2rem;
+    align-items: center;
+    justify-content: flex-start;
+    align-self: flex-end;
+    margin: 1rem;
+}
+
+.self-me {
+    display: flex;
+    position: absolute;
+    color: white; 
+    transform: translate(2rem)
+}
+
+.name-self {
+    display: flex;
+    position: absolute;
+    color: white;
+    font-size: 2.8rem;
+    overflow: auto;
+}
+
+.mute-self {
+    display: flex;
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    justify-self: center;
+    justify-items: center;
+    align-items: center;
+    align-self: flex-start;
+    left: 60%;
+    bottom: 95%;
+    /* transform: translate(-1rem, -20rem); */
+}
+
+.delete-host {
+    display: none;
+    position: absolute;
+    margin: 1rem;
+}
+
+.meet_member {
+    max-height: 60rem;
+    display: flex;
+    flex-wrap: wrap;
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    justify-content: space-evenly;
+    align-content: center;
+}
+
+.member {
+    display: flex;
+    background-color: rgb(60, 64, 67);
+    width: 14rem;
+    height: 11rem;
+    border-radius: 5%;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0.3rem;
+    flex-grow: 0.1;
+    text-align: left;
+}
+
+.delete-member {
+    display: flex;
+    position: absolute;
+    margin: 0.5rem;
+    transform: translateY(-4rem);
+}
+
+.mute-member {
+    display: flex;
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    background-color: rgb(53, 55, 58);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+    margin-right: 0.5rem;
+    transform: translateY(-4rem);
+}
+
+.headshot {
+    display: flex;
+    position: relative;
+    text-align: center;
+    /* flex-wrap: nowrap; */
+    justify-content: center;
+    align-items: center;
+}
+
+/* headshot toolbox */
+.headshot:hover .tool-box {
+    display: flex;
+    position: absolute;
+    width: 5rem;
+    height: 2rem;
+    border-radius: 30%;
+    background-color: rgb(60, 64, 67);
+    justify-content: space-around;
+    align-items: center;
+    opacity: 0.5;
+}
+
+.headshot:hover .tool-box:hover {
+    opacity: 0.8;
+}
+
+.unpin-words {
+    display: none;
+}
+
+.headshot:hover .tool-box:hover .unpin:hover .unpin-words {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 1.8rem;
+    width: 3.8rem;
+    border-radius: 10%;
+    background-color: rgb(60, 64, 67);
+    transform: translate(-1.5rem, -4rem);
+    opacity: 0.8;
+}
+
+.unpin-words-detail {
+    display: flex;
+    color: white;
+}
+
+.unblock-words {
+    display: none;
+}
+
+.headshot:hover .tool-box:hover .unblock:hover .unblock-words {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 1.8rem;
+    width: 5rem;
+    border-radius: 10%;
+    background-color: rgb(60, 64, 67);
+    transform: translate(-2rem, -4rem);
+    opacity: 0.8;
+}
+
+.unblock-words-detail {
+    display: flex;
+    color: white;
+}
+
+
+.minimize-words {
+    display: none;
+}
+
+.headshot:hover .tool-box:hover .minimize:hover .minimize-words {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 1.8rem;
+    width: 5rem;
+    border-radius: 10%;
+    background-color: rgb(60, 64, 67);
+    transform: translate(-1.5rem, -4rem);
+    opacity: 0.8;
+}
+
+.minimize-words-detail {
+    display: flex;
+    color: white;
+}
+/* end toolbox */
+
+.name-member {
+    display: flex;
+    position: absolute;
+    color: white;
+    font-size: 2rem;
+    overflow: auto;
+}
+
+.member-wholename {
+    display: flex;
+    font-size: 1.1rem;
+    position: absolute;
+    color: white;
+    margin-left: 0.5rem;
+}
+
+
+.meet_footer {
+    display: flex;
+    justify-content: space-between;
+    grid-row: 2 / 3;
+    grid-column: 1 / 3;
+}
+
+
+.time-detail {
+    display: flex;
+    font-size: 1rem;
+    color: white;
+    margin-top: 1.1rem;
+    margin-left: 1.1rem;
+    flex-direction: row;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-setting-change {
+    display: flex;
+    background-color: rgb(60, 64, 67);
+    width: 3rem;
+    height: 3rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 0.8rem;
+}
+
+.button-setting {
+    display: flex;
+    background-color: rgb(60, 64, 67);
+    width: 3rem;
+    height: 3rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 0.8rem;
+}
+
+
+.add-detail {
+    display: none;
+}
+
+.button-setting-add:hover .add-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 2rem;
+    width: 7rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+
+.checkbox-microphone[type="checkbox"] {
+    content: url("./images/mute-backgound.png");
+    appearance: none;
+    display: block;
+    width: 65px;
+    height: 65px;
+} 
+
+.checkbox-microphone[type="checkbox"]:checked {
+    content: url("./images/microphone.png");
+    width: 30px;
+    height: 30px;
+    color: rgb(60, 64, 67);
+}
+
+.microphone-detail {
+    display: none;
+}
+
+.microphone-detail-uncheck {
+    display: none;
+}
+
+.button-setting-microphone:hover:has(.checkbox-microphone[type="checkbox"]:checked) .microphone-detail {
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-1rem, -6rem);
+    height: 2rem;
+    width: 4rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.button-setting-microphone:hover:has(.checkbox-microphone[type="checkbox"]) .microphone-detail-uncheck {
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(0rem, -7rem);
+    height: 2rem;
+    width: 4.5rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.button-setting-microphone:hover:has(.checkbox-microphone[type="checkbox"]) .microphone-detail {
+    display: none;
+}
+
+.button-setting-microphone:hover:has(.checkbox-microphone[type="checkbox"]:checked) .microphone-detail-uncheck {
+    display: none;
+}
+
+/* .checkbox-microphone[type="checkbox"]:checked .mute-self {
+    display: none;
+} */
+
+.checkbox-videocam[type="checkbox"] {
+    content: url("./images/cameraoff-background.png");
+    appearance: none;
+    display: block;
+    width: 60px;
+    height: 60px;
+} 
+
+.checkbox-videocam[type="checkbox"]:checked {
+    content: url("./images/videocam.png");
+    width: 30px;
+    height: 30px;
+    color: rgb(60, 64, 67);
+}
+
+.videocam-detail {
+    display: none;
+}
+
+.videocam-detail-uncheck {
+    display: none;
+}
+
+.button-setting-videocam:hover:has(.checkbox-videocam[type="checkbox"]:checked) .videocam-detail {
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 2rem;
+    width: 6rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.button-setting-videocam:hover:has(.checkbox-videocam[type="checkbox"]) .videocam-detail-uncheck {
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-1rem, -7rem);
+    height: 2rem;
+    width: 6rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.button-setting-videocam:hover:has(.checkbox-videocam[type="checkbox"]) .videocam-detail {
+    display: none;
+}
+
+.button-setting-videocam:hover:has(.checkbox-videocam[type="checkbox"]:checked) .videocam-detail-uncheck {
+    display: none;
+}
+
+
+.button-setting-videocam:hover .videocam-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 2rem;
+    width: 6rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.hand-detail {
+    display: none;
+}
+
+.button-setting-hand:hover .hand-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 2rem;
+    width: 7rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+
+.present-detail {
+    display: none;
+}
+
+.button-setting-present:hover .present-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 2rem;
+    width: 8rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.more-detail {
+    display: none;
+}
+
+.button-setting-more:hover .more-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 2rem;
+    width: 5rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.handset-setting {
+    display: flex;
+    background-color: rgb(60, 64, 67);
+    width: 5rem;
+    height: 3.2rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40%;
+    margin-right: 0.8rem;
+    background-color: rgb(233, 68, 54);
+}
+
+.handset-detail {
+    display: none;
+}
+
+.button-setting-handset:hover .handset-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 1.8rem;
+    width: 6.5rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.control-setting {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1.8rem;
+}
+
+.info-detail {
+    display: none;
+}
+
+.button-setting-info:hover .info-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 2rem;
+    width: 7rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.group-detail {
+    display: none;
+}
+
+.button-setting-group:hover .group-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-1rem, -6rem);
+    height: 2rem;
+    width: 5rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.chat-detail {
+    display: none;
+}
+
+.button-setting-chat:hover .chat-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-1rem, -6rem);
+    height: 2rem;
+    width: 4rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.activity-detail {
+    display: none;
+}
+
+.button-setting-activity:hover .activity-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 2rem;
+    width: 5rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.lock-detail {
+    display: none;
+}
+
+.button-setting-lock:hover .lock-detail{
+    display: flex;
+    position: absolute;
+    color: white;
+    border-radius: 15%;
+    transform: translate(-2rem, -6rem);
+    height: 2rem;
+    width: 5rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 64, 67);
+}
+
+.group-people {
+    display: flex;
+    position: absolute;
+    color: white;
+    background-color: rgb(95, 99, 103);
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    transform: translate(1.1rem, -1.3rem);
+}
+
+@media (min-height: 850px) {
+    .meet_root {
+        display: grid;
+        position: absolute;
+        top: 0;
+        left: 0;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows:  18fr 1fr;
+    }
+}

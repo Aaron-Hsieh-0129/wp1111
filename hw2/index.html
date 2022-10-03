@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" neame="viewport" content="width=device-width, initial-scale=1">
+        <title>Google Meet</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    
+    <body>
+        <script src="main.js"></script>
+
+        <dialog id="infoModal">
+            <div id="input1">
+                <p>Input Name: </p>
+                <input id="input1-box" type="text">
+            </div>
+
+            <div id="input2">
+                <p>Input Full Name: </p>
+                <input id="input2-box" type="text">
+            </div>
+
+            <div id="choose">
+                <p>Choose Headshot:</p>
+                <select name="headshot">
+                    <option value="./images/headshot-self.png" selected>Headshot1</option>
+                    <option value="./images/headshot-member1.png">Headshot2</option>
+                    <option value="./images/headshot-member2.png">Headshot3</option>
+                    <option value="./images/headshot-member3.png">Headshot4</option>
+                    <option value="./images/headshot-member4.png">Headshot5</option>
+                    <option value="./images/headshot-member5.png">Headshot6</option>
+                </select>
+                <br>
+                <br>
+            </div>
+            <div id="submit">
+                <input type="submit" value="Submit to me">
+            </div>
+        </dialog>
+
+        <div class="meet_root">
+            <div class="host">
+                <div class="mute-self">
+                    <img src="./images/mute.png" width="20" height="20">
+                </div>
+
+                <div class="headshot-self">
+                    <img src="./images/headshot-self.png" alt="headshot" width="120" height="120">
+                    <p class="name-self">鐘揚</p>
+                    <div class="tool-box" id="0">
+                        <div class="unpin">
+                            <img src="./images/unpin.png" alt="toolbox" width="20" height="20">
+                            <div class="unpin-words">
+                                <p class="unpin-words-detail">Unpin</p>
+                            </div>
+                        </div>
+
+                        <div class="unblock">
+                            <img src="./images/unblock.png" alt="toolbox" width="20" height="20">
+                            <div class="unblock-words">
+                                <p class="unblock-words-detail">Cancel block mode</p>
+                            </div>
+                        </div>
+
+                        <div class="minimize">
+                            <img src="./images/minimize.png" alt="toolbox" width="20" height="20">
+                            <div class="minimize-words">
+                                <p class="minimize-words-detail">Minimize</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pin-self">
+                    <img src="./images/pin.png" width="20" height="20">
+                    <p class="self-me">你</p>
+                </div>
+
+                <div class="delete-host">
+                    <img src="./images/x.png" width="20" height="20">
+                </div>
+            </div>
+
+
+            <section class="meet_member">
+                <!-- <div class="member" id="id1">
+                    <div class="delete-member">
+                        <img src="./images/x.png" width="20" height="20">
+                    </div>
+                    
+                    <div class="mute-member">
+                        <img src="./images/mute.png" width="20" height="20">
+                    </div>
+
+                    <div>
+                        <div class="headshot">
+                            <img src="./images/headshot-member1.png" alt="headshot" width="80" height="80">
+                            <p class="name-member">彥儒</p>
+
+                            <div class="tool-box">
+                                <div class="unpin">
+                                    <img src="./images/pin.png" alt="toolbox" width="15" height="15">
+                                    <div class="unpin-words">
+                                        <p class="unpin-words-detail">Pin</p>
+                                    </div>
+                                </div>
+        
+                                <div class="unblock">
+                                    <img src="./images/mute.png" alt="toolbox" width="15" height="15">
+                                    <div class="unblock-words">
+                                        <p class="unblock-words-detail">Mute</p>
+                                    </div>
+                                </div>
+        
+                                <div class="minimize">
+                                    <img src="./images/remove.png" alt="toolbox" width="15" height="15">
+                                    <div class="minimize-words">
+                                        <p class="minimize-words-detail">Remove</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="member-wholename">李彥儒</p>
+                    </div>
+
+                </div>
+
+                <div class="member" id="id2">
+                    <div class="delete-member">
+                        <img src="./images/x.png" width="20" height="20">
+                    </div>
+
+                    <div class="mute-member">
+                        <img src="./images/mute.png" width="20" height="20">
+                    </div>
+
+                    <div>
+                        <div class="headshot">
+                            <img src="./images/headshot-member2.png" alt="headshot" width="80" height="80">
+                            <p class="name-member">孟宏</p>
+
+                            <div class="tool-box">
+                                <div class="unpin">
+                                    <img src="./images/pin.png" alt="toolbox" width="15" height="15">
+                                    <div class="unpin-words">
+                                        <p class="unpin-words-detail">Pin</p>
+                                    </div>
+                                </div>
+        
+                                <div class="unblock">
+                                    <img src="./images/mute.png" alt="toolbox" width="15" height="15">
+                                    <div class="unblock-words">
+                                        <p class="unblock-words-detail">Mute</p>
+                                    </div>
+                                </div>
+        
+                                <div class="minimize">
+                                    <img src="./images/remove.png" alt="toolbox" width="15" height="15">
+                                    <div class="minimize-words">
+                                        <p class="minimize-words-detail">Remove</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="member-wholename">陳孟宏</p>
+                    </div>
+                </div>
+
+                <div class="member" id="id3">
+                    <div class="delete-member">
+                        <img src="./images/x.png" width="20" height="20">
+                    </div>
+
+                    <div class="mute-member">
+                        <img src="./images/mute.png" width="20" height="20">
+                    </div>
+
+                    <div>
+                        <div class="headshot">
+                            <img src="./images/headshot-member3.png" alt="headshot" width="80" height="80">
+                            <p class="name-member">yl</p>
+
+                            <div class="tool-box">
+                                <div class="unpin">
+                                    <img src="./images/pin.png" alt="toolbox" width="15" height="15">
+                                    <div class="unpin-words">
+                                        <p class="unpin-words-detail">Pin</p>
+                                    </div>
+                                </div>
+        
+                                <div class="unblock">
+                                    <img src="./images/mute.png" alt="toolbox" width="15" height="15">
+                                    <div class="unblock-words">
+                                        <p class="unblock-words-detail">Mute</p>
+                                    </div>
+                                </div>
+        
+                                <div class="minimize">
+                                    <img src="./images/remove.png" alt="toolbox" width="15" height="15">
+                                    <div class="minimize-words">
+                                        <p class="minimize-words-detail">Remove</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="member-wholename">yl h</p>
+                    </div>
+
+
+                </div>
+
+                <div class="member" id="id4">
+                    <div class="delete-member">
+                        <img src="./images/x.png" width="20" height="20">
+                    </div>
+
+                    <div class="mute-member">
+                        <img src="./images/mute.png" width="20" height="20">
+                    </div>
+
+                    <div>
+                        <div class="headshot">
+                            <img src="./images/headshot-member4.png" alt="headshot" width="80" height="80">
+                            <p class="name-member">慕德</p>
+
+                            <div class="tool-box">
+                                <div class="unpin">
+                                    <img src="./images/pin.png" alt="toolbox" width="15" height="15">
+                                    <div class="unpin-words">
+                                        <p class="unpin-words-detail">Pin</p>
+                                    </div>
+                                </div>
+        
+                                <div class="unblock">
+                                    <img src="./images/mute.png" alt="toolbox" width="15" height="15">
+                                    <div class="unblock-words">
+                                        <p class="unblock-words-detail">Mute</p>
+                                    </div>
+                                </div>
+        
+                                <div class="minimize">
+                                    <img src="./images/remove.png" alt="toolbox" width="15" height="15">
+                                    <div class="minimize-words">
+                                        <p class="minimize-words-detail">Remove</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="member-wholename">劉慕徳 /Joshua Lau</p>
+                    </div>
+                </div>
+
+                <div class="member" id="id5">
+                    <div class="delete-member">
+                        <img src="./images/x.png" width="20" height="20">
+                    </div>
+                    
+                    <div class="mute-member">
+                        <img src="./images/mute.png" width="20" height="20">
+                    </div>
+
+                    <div>
+                        <div class="headshot">
+                            <img src="./images/headshot-member5.png" alt="headshot" width="80" height="80">
+                            <p class="name-member">子瑜</p>
+
+                            <div class="tool-box">
+                                <div class="unpin">
+                                    <img src="./images/pin.png" alt="toolbox" width="15" height="15">
+                                    <div class="unpin-words">
+                                        <p class="unpin-words-detail">Pin</p>
+                                    </div>
+                                </div>
+        
+                                <div class="unblock">
+                                    <img src="./images/mute.png" alt="toolbox" width="15" height="15">
+                                    <div class="unblock-words">
+                                        <p class="unblock-words-detail">Mute</p>
+                                    </div>
+                                </div>
+        
+                                <div class="minimize">
+                                    <img src="./images/remove.png" alt="toolbox" width="15" height="15">
+                                    <div class="minimize-words">
+                                        <p class="minimize-words-detail">Remove</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="member-wholename">童子瑜</p>
+                    </div>
+                </div> -->
+
+            </section>
+
+            <foooter class="meet_footer">
+                <div>
+                    <p class="time-detail">&nbsp; | &nbsp; </p>
+                </div>
+
+                <div class="button">
+                    <div class="button-setting">
+                        <div class="button-setting-add">
+                            <img src="./images/add.png" width="30" height="30" style="display: flex; align-items: center;">
+                            <p class="add-detail">Add People</p>
+                        </div>
+                    </div>
+
+
+                    <div class="button-setting-change">
+                        <div class="button-setting-microphone">
+                            <input class="checkbox-microphone" type="checkbox" />
+                            <p class="microphone-detail">Mute</p>
+                            <p class="microphone-detail-uncheck">Unmute</p>
+                        </div>
+                    </div>
+
+                    <div class="button-setting-change">
+                        <div class="button-setting-videocam">
+                            <input class="checkbox-videocam" type="checkbox" />
+                            <p class="videocam-detail">Camera Off</p>
+                            <p class="videocam-detail-uncheck">Camera On</p>
+                        </div>
+                    </div>
+
+                    <div class="button-setting">
+                        <div class="button-setting-hand">
+                            <img src="./images/hand.png" width="30" height="30" style="display: flex; align-items: center;">
+                            <p class="hand-detail">Raise Hand</p>
+                        </div>
+                    </div>
+
+                    <div class="button-setting">
+                        <div class="button-setting-present">
+                            <img src="./images/present.png" width="30" height="30" style="display: flex; align-items: center;">
+                            <p class="present-detail">Share Screen</p>
+                        </div>
+                    </div>
+                    
+                    <div class="button-setting">
+                        <div class="button-setting-more">
+                            <img src="./images/more.png" width="30" height="30" style="display: flex; align-items: center;">
+                            <p class="more-detail">Options</p>
+                        </div>
+                    </div>
+
+                    <div class="handset-setting">
+                        <div class="button-setting-handset">
+                            <img src="./images/handset.png" width="30" height="20" style="display: flex; align-items: center;">
+                            <p class="handset-detail">Exit Meeting</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control">
+
+                    <div class="control-setting">
+                        <div class="button-setting-info">
+                            <img src="./images/info.png" width="30" height="30" style="display: flex; align-items: center;">
+                            <p class="info-detail">Information</p>
+                        </div>
+                    </div>
+
+                    <div class="control-setting">
+                        <div class="button-setting-group">
+                            <img src="./images/group.png" width="30" height="30" style="display: flex; align-items: center;">
+                            <p class="group-detail">Members</p>
+                        </div>
+                        <p class="group-people">6</p>
+                    </div>
+
+                    <div class="control-setting">
+                        <div class="button-setting-chat">
+                            <img src="./images/chat.png" width="30" height="30" style="display: flex; align-items: center;">
+                            <p class="chat-detail">Chat</p>
+                        </div>
+                    </div>
+
+                    <div class="control-setting">
+                        <div class="button-setting-activity">
+                            <img src="./images/activity.png" width="30" height="30" style="display: flex; align-items: center;">
+                            <p class="activity-detail">Activities</p>
+                        </div>
+                    </div>
+
+                    <div class="control-setting">
+                        <div class="button-setting-lock">
+                            <img src="./images/lock.png" width="30" height="30" style="display: flex; align-items: center;">
+                            <p class="lock-detail">Control</p>
+                        </div>
+                    </div>
+                </div>
+            </foooter>
+
+
+        </div>
+    </body>
+</html>
