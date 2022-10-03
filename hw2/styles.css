@@ -228,11 +228,12 @@ dialog::backdrop {
 
 .member {
     display: flex;
+    position: relative;
     background-color: rgb(60, 64, 67);
     width: 14rem;
     height: 11rem;
     border-radius: 5%;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
     margin: 0.3rem;
     flex-grow: 0.1;
@@ -242,8 +243,7 @@ dialog::backdrop {
 .delete-member {
     display: flex;
     position: absolute;
-    margin: 0.5rem;
-    transform: translateY(-4rem);
+    margin: 0.6rem;
 }
 
 .mute-member {
@@ -256,17 +256,18 @@ dialog::backdrop {
     align-items: center;
     justify-content: center;
     align-self: flex-end;
-    margin-right: 0.5rem;
-    transform: translateY(-4rem);
+    margin: 0.5rem;
 }
 
 .headshot {
     display: flex;
-    position: relative;
+    position: absolute;
     text-align: center;
     /* flex-wrap: nowrap; */
     justify-content: center;
     align-items: center;
+    top: 30%;
+    left: 35%;
 }
 
 /* headshot toolbox */
@@ -368,6 +369,7 @@ dialog::backdrop {
     position: absolute;
     color: white;
     margin-left: 0.5rem;
+    transform: translateY(-200%);
 }
 
 

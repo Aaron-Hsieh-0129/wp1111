@@ -53,6 +53,7 @@ const createMember = (name, fullName, photo, idMember) => {
     const toolBox = member.children[2].children[0].children[2];
     toolBox.addEventListener('click', pinChange);
     if (idMember !== 0) nowPeople++;
+
     return member;
 }
 
@@ -81,6 +82,108 @@ const deletePin = (e) => {
     count[0].innerHTML = Number(count[0].innerHTML) - 1;
 }
 
+const changeLayout = () => {
+    let num = Number(document.getElementsByClassName("group-people")[0].innerHTML);
+    console.log(num);
+    if (someoneIsPinnedNow === false) {
+        if (2 === num) {
+            
+            document.querySelectorAll(".member").forEach(function(element) {
+                element.style.width = "30%";
+                element.style.height = "60%";
+            });
+        
+            document.querySelectorAll(".headshot").forEach(function(element) {
+                element.style.top = "40%";
+                element.style.left = "40%";
+            });
+        }
+
+        if (3 === num) {
+            document.querySelectorAll(".member").forEach(function(element) {
+                element.style.width = "30%";
+                element.style.height = "40%";
+            });
+        
+            document.querySelectorAll(".headshot").forEach(function(element) {
+                element.style.top = "35%";
+                element.style.left = "40%";
+            });
+        }
+
+        if (4 <= num && num <= 6) {
+            document.querySelectorAll(".member").forEach(function(element) {
+                element.style.width = "30%";
+                element.style.height = "40%";
+            });
+        
+            document.querySelectorAll(".headshot").forEach(function(element) {
+                element.style.top = "35%";
+                element.style.left = "40%";
+            });
+        }
+
+        if (7 <= num && num <= 9) {
+            document.querySelectorAll(".member").forEach(function(element) {
+                element.style.width = "30%";
+                element.style.height = "30%";
+            });
+        
+            document.querySelectorAll(".headshot").forEach(function(element) {
+                element.style.top = "35%";
+                element.style.left = "40%";
+            });
+        }
+
+        if (10 <= Number(id.length) && Number(id.length) <= 12) {
+            document.querySelectorAll(".member").forEach(function(element) {
+                element.style.width = "26%";
+                element.style.height = "23%";
+            });
+        
+            document.querySelectorAll(".headshot").forEach(function(element) {
+                element.style.top = "26%";
+                element.style.left = "40%";
+            });
+        }
+
+        if (13 <= num && num <= 15) {
+            document.querySelectorAll(".member").forEach(function(element) {
+                element.style.width = "20%";
+                element.style.height = "20%";
+            });
+        
+            document.querySelectorAll(".headshot").forEach(function(element) {
+                element.style.top = "30%";
+                element.style.left = "35%";
+            });
+        }
+    }
+    else {
+        document.querySelectorAll(".member").forEach(function(element) {
+            element.style.width = "14rem";
+            element.style.height = "11rem";
+        });
+    
+        document.querySelectorAll(".headshot").forEach(function(element) {
+            element.style.top = "30%";
+            element.style.left = "35%";
+        });
+    }
+    
+    if (num === 1) {
+        document.querySelectorAll(".member").forEach(function(element) {
+            element.style.width = "60%";
+            element.style.height = "60%";
+        });
+    
+        document.querySelectorAll(".headshot").forEach(function(element) {
+            element.style.top = "40%";
+            element.style.left = "40%";
+        });
+    }
+}
+
 const pinChange = (e) => {
     // checktime
     checkTime();
@@ -91,7 +194,6 @@ const pinChange = (e) => {
         changeObj = changeObj.parentNode;
     }
     let pos = Number(changeObj.id);
-    console.log(pos)
 
     if (someoneIsPinnedNow === true) {
         if (pos === 0) {
@@ -154,6 +256,7 @@ const pinChange = (e) => {
 
         someoneIsPinnedNow = true;
     }
+    changeLayout();
 };
 
 
@@ -163,6 +266,8 @@ const addPeople = () => {
 
     let submitButton = document.querySelector("#submit");
     submitButton.addEventListener("click", getValueAndClose);
+
+    changeLayout();
 }
 
 const getValueAndClose = (e) => {
@@ -185,8 +290,13 @@ const getValueAndClose = (e) => {
     let count = document.getElementsByClassName("group-people");
     count[0].innerHTML = Number(count[0].innerHTML) + 1;
 
+    submitTarget.children[0].children[1].value = "";
+    submitTarget.children[1].children[1].value = "";
+
     let infoModal = document.querySelector("#infoModal");
     infoModal.close();
+
+    changeLayout();
 
 }
 
