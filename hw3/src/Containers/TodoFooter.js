@@ -2,8 +2,8 @@ import { TodoFooterLeft } from "../Components/TodoFooterLeft";
 import { TodoFooterButton } from "../Components/TodoFooterButton";
 import { TodoFooterClean } from "../Components/TodoFooterClean";
 
-const TodoFooter = ({count, ClearDetect}) => {
-    if (count === 0) {
+const TodoFooter = ({count, ClearDetect, countWOCom}) => {
+    if (count === 0 && countWOCom === 0) {
         return
     }
     else {
