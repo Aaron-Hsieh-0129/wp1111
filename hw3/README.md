@@ -1,3 +1,18 @@
+# 功能
+請先 `npm` 再 `npm start`
+基礎及進階功能皆有完成
+## 基礎功能
+1. 將程式分為 Containers / Components
+2. 一開始只有head
+3. 可以check todo並切換已完成未完成同時改變css
+4. 可以顯示未完成數量
+
+## 進階功能
+1. 可以刪除todo
+2. 可以切換all, active, completed
+3. 可以一鍵delete已完成的todo
+4. 清空時回到與初始畫面相同狀態
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

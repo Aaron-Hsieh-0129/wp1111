@@ -227,3 +227,13 @@ input[type='checkbox'] {
   max-height: 25px;
   right: 17.5px;
 }
+
+.noLine {
+  text-decoration: none;
+  opacity: 1;
+}
+
+.line {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
