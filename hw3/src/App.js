@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { TodoHeader } from './Containers/TodoHeader';
 import { TodoMain } from './Containers/TodoMain';
 import { TodoFooter } from './Containers/TodoFooter';
-import X from "./x.png"
 
 function App() {
     const [ allNumber, setAllNumber] = useState(0);

@@ -12,6 +12,7 @@
 2. 可以切換all, active, completed
 3. 可以一鍵delete已完成的todo
 4. 清空時回到與初始畫面相同狀態
+5. 全部都完成時不會出現completed clear
 
 # Getting Started with Create React App
 

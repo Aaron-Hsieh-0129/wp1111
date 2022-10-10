@@ -14,7 +14,6 @@ const TodoMain = ({itemArray, setArray, count, setAllNumber, countWOCom, setAllN
     const lineClass = "todo-app__item-detail line";
     function CompleteDetect(e) {
 
-        console.log(e.target.id);
         const thisItem = itemArray.find((item) => item.id === Number(e.target.id));
 
         if (!thisItem.check) {
