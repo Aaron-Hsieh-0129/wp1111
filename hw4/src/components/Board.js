@@ -73,30 +73,6 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
         setRemainFlagNum(remainFlagNum => remainFlagNum = newFlagNum);
     };
 
-    // const BFS = (row, col, ROW, COL, visited, grid) => {
-    //     const directions = [[1, 0], [-1, 0], [0, 1], [0, -1]];
-    //     const queue = [[row, col]];
-    //     visited[row][col] = true;
-    //     while (queue.length > 0) {
-    //         const currPos = queue.shift();
-    //         for (const direction of directions) {
-    //             const newRow = currPos[0] + direction[0];
-    //             const newCol = currPos[1] + direction[1];
-    //             if (isValid(newRow, newCol, ROW, COL, visited, grid)) {
-    //                 queue.push([newRow, newCol]);
-    //                 console.log(queue);
-    //                 visited[newRow][newCol] = true;
-    //             }
-    //         }
-    //     }
-    // }
-    
-    // const isValid = (row, col, ROW, COL, visited, grid) => {
-    //     if (row < 0 || row >= ROW || col < 0 || col >= COL || grid[row][col].value !== "0" || visited[row][col]) return false;
-    //     return true;
-    // }
-    
-
     const revealCell = (x, y) => {
         if (board[x][y].revealed || gameOver || board[x][y].flagged) return;
         let newBoard = JSON.parse(JSON.stringify(board));
@@ -133,70 +109,6 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
             };
 
             BFS(x, y);
-            // newBoard[x][y].revealed = true;
-            // nonNum--;
-            // let checkXB = true, checkXU = true, checkYR = true, checkYL = true;
-            // let iXB = 0, iXU = 0;
-            
-            // let checkXB = true;
-            // for (let idx = 1; idx <= boardSize-x-1; idx++) {
-            //     if (newBoard[x+idx][y].value === 0 && newBoard[x+idx][y].revealed === false && checkXB) {
-            //         newBoard[x+idx][y].revealed = true;
-            //         nonNum--;
-            //         iXB = x + idx + 1;
-            //     }
-            //     else checkXB = false;
-            // }
-            // if (newBoard[iXB][y].value !== "💣" && newBoard[iXB][y].revealed === false && checkXB === false && iXB < boardSize) {
-            //     newBoard[iXB][y].revealed = true;
-            //     nonNum--;
-            // }
-
-            // for (let idx = 1; idx <= x; idx++) {
-            //     if (newBoard[x-idx][y].value === 0 && newBoard[x-idx][y].revealed === false && checkXU) {
-            //         newBoard[x-idx][y].revealed = true;
-            //         nonNum--;
-            //         iXU = x - idx - 1;
-            //     }
-            //     else checkXU = false;
-            // }
-            // if (newBoard[iXU][y].value !== "💣" && newBoard[iXU][y].revealed === false && checkXU === false && iXU >= 0) {
-            //     newBoard[iXU][y].revealed = true;
-            //     nonNum--;
-            // }
-
-
-            // for (let idx = 1; idx <= boardSize-y-1; idx++) {
-            //     if (newBoard[x][y+idx].value === 0 && newBoard[x][y+idx].revealed === false && checkYR) {
-            //         newBoard[x][y+idx].revealed = true;
-            //         nonNum--;
-            //     }
-            //     else checkYR = false;
-            // }
-
-            // for (let idx = 1; idx <= y; idx++) {
-            //     if (newBoard[x][y-idx].value === 0 && newBoard[x][y-idx].revealed === false && checkYL) {
-            //         newBoard[x][y-idx].revealed = true;
-            //         nonNum--;
-            //     }
-            //     else checkYL = false;
-            // }
-            // if (x >= 1 && x <= boardSize - 1) {
-            //     if (newBoard[x-1][y].value === 0 && newBoard[x-1][y].revealed === false) {
-            //         newBoard[x-1][y].revealed = true;
-            //         nonNum--;
-            //     }
-            // }
-            // if (y >= 1 && y <= boardSize - 1) {
-            //     let check = true;
-            //     for (let idx = 1; idx <= y; idx++) {
-            //         if (newBoard[x][y-idx].value === 0 && newBoard[x][y-idx].revealed === false && check) {
-            //             newBoard[x][y-idx].revealed = true;
-            //             nonNum--;
-            //         }
-            //         else check = false;
-            //     }
-            // }
 
             setNonMineCount(nonMineCount => nonMineCount = nonNum);
             setBoard(board => board = newBoard);
