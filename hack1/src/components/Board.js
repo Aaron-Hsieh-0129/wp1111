@@ -12,6 +12,7 @@ import React from "react";
 import CurRow from "./CurRow";
 
 const Board = ({ turn, guesses, curGuess }) => {
+    let checkNow = false;
     return (
         <div className="Board-container">
             {/* TODO 2-2: show 6 rows (map function is recommended) and defined row's key.
@@ -20,6 +21,12 @@ const Board = ({ turn, guesses, curGuess }) => {
             {console.log(curGuess)}
             {
                 guesses.map((guess, idx) => {
+                    if (idx < turn) {
+                        checkNow = true;
+                    }
+                    else {
+                        checkNow = false;
+                    }
                     if (idx === turn) {
                         return (
                             <CurRow id={`row_${idx}`} key={`row_${idx}`} curGuess={curGuess} rowIdx={turn} />
@@ -28,7 +35,7 @@ const Board = ({ turn, guesses, curGuess }) => {
                     else {
                         return (
                         
-                            <Row id={`row_${idx}`} key={`row_${idx}`} guess={guess} rowIdx={idx}>
+                            <Row id={`row_${idx}`} key={`row_${idx}`} guess={guess} rowIdx={idx} checkNow={checkNow}>
                                 
                             </Row>
                         )
