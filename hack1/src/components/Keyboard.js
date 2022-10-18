@@ -18,14 +18,54 @@ const Keyboard = ({ usedChars }) => {
 
     useEffect(() => {
         // TODO 1-2: slice `config.letters` into three parts.
-        
+        setFirstRowLetters(config.letters.slice(0, 10));
+        setSecondRowLetters(config.letters.slice(10, 19));
         setThirdRowLetters(config.letters.slice(19, 29));
     }, [])
     
+    const checkKey = () => {
+        for (let key in usedChars) {
+            const now = document.getElementById(`char_${key}`);
+            now.className = 'Keyboard-char ' + usedChars[key];
+        }
+        return;
+    }
+
     return (
         <div className='Keyboard-container'>
             {/* TODO 1-2: show `firstRowLetters` and `secondRowLetters` */}
+            <div id='KBrow_1' key='KBrow_1' className='Keyboard-row'>
+                {firstRowLetters && firstRowLetters.map((letter) => {
+                    const color = usedChars[letter.char]
+                    return (
+                        letter.char === 'Enter' ?
+                            <div key={'char_' + letter.char} className='Keyboard-char-enter' >{letter.char}</div>
+                            :
+                            letter.char === 'Backspace' ?
+                                <div  key={'char_' + letter.char} className='Keyboard-char-backspace'><IoBackspaceOutline /></div>
+                                :
+                                <div id = {'char_' + letter.char} key={'char_' + letter.char} className={'Keyboard-char ' + color}>{letter.char}</div>
+                    )
+                })}
+            </div>
+
+            <div id='KBrow_2' key='KBrow_2' className='Keyboard-row'>
+                {secondRowLetters && secondRowLetters.map((letter) => {
+                    const color = usedChars[letter.char]
+                    return (
+                        letter.char === 'Enter' ?
+                            <div key={'char_' + letter.char} className='Keyboard-char-enter' >{letter.char}</div>
+                            :
+                            letter.char === 'Backspace' ?
+                                <div  key={'char_' + letter.char} className='Keyboard-char-backspace'><IoBackspaceOutline /></div>
+                                :
+                                <div id = {'char_' + letter.char} key={'char_' + letter.char} className={'Keyboard-char ' + color}>{letter.char}</div>
+                    )
+                })}
+            </div>
+
             {/* TODO 5: add color to each `Keyboard-char`. */}
+            {checkKey}
             
 
             <div id='KBrow_3' key='KBrow_3' className='Keyboard-row'>

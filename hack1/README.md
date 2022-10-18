@@ -128,7 +128,7 @@ Hack#1 is a simplified version of [Wordle](https://www.nytimes.com/games/wordle/
         | 'nnaaa' | ['yellow', 'yellow', 'grey', 'grey', 'grey'] |
         | 'aannn' | ['grey', 'grey', 'green', 'green', 'grey'] |
         | 'aaann' | ['grey', 'grey', 'grey', 'green', 'yellow'] |
-        | 'nanan' | ['yellow', 'grey', 'green', 'grey', 'yellow'] |
+        | 'nanan' | ['yellow', 'grey', 'green', 'grey', 'grey'] |
 
     
 5. Update parameters, check each char's usage and show in `Keyboard` and reset `curGuess` (20%)

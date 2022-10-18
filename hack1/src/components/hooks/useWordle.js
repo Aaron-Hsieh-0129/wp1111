@@ -41,12 +41,12 @@ const useWordle = (solution) => {
         }
         // (3) Press Enter, store curGuess to guesses, reset curGuess and update parameters .
     
-        // console.log("Press Enter!!!! Store and reset curGuess!");
+        console.log("Press Enter!!!! Store and reset curGuess!");
         // TODO 4: Check each wordbox's color in `curGuess` and update `guess`, `turn` and `curGuess`
         // Hint: check green first, and then check yellow.
-
-        // add the formatted guess generated into guesses.
         
+        // add the formatted guess generated into guesses.
+
         // turn += 1
         
         // set curGuess to default
@@ -54,10 +54,23 @@ const useWordle = (solution) => {
 
         // TODO 5: update parameters, check each char usage and show in `Keyboard` and reset `curGuess`.
         // 5-1) check if curGuess === solution, if true, set `isCorrect` to true.
-        
+        if (curGuess === solution) {
+            setIsCorrect(cur => cur = true);
+        }
         
         // 5-2) usedChars update
-        
+        for (let char in curGuess) {
+            let color = "";
+            for (let sol in solution) {
+                if (sol === char) {
+                    color = 'green';
+                }
+            }
+            if (typeof(usedChars['char']) !== 'string') {
+                setUsedChars(cur => {return {...cur, char: color}})
+            }
+            
+        }
         
     }
 
