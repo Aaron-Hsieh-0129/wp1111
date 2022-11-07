@@ -17,7 +17,7 @@ router.delete("/cards", async (_, res) => {
 // add
 router.post("/card", async (req, res) => {
     try {
-        console.log("body: ", req.body);
+        // console.log("body: ", req.body);
         const {name, subject, score} = req.body;
         const check = await ScoreCard.findOne({name, subject});
         

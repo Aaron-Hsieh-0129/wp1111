@@ -115,9 +115,9 @@ const Body = () => {
   };
 
   const handleAdd = async () => {
-    console.log("name: ", name);
-    console.log("sub: ", subject);
-    console.log("score: ", score);
+    // console.log("name: ", name);
+    // console.log("sub: ", subject);
+    // console.log("score: ", score);
     const {
       data: { message, card, rows },
     } = await axios.post('/card', {
@@ -125,7 +125,7 @@ const Body = () => {
       subject,
       score,
     });
-    console.log(rows)
+    // console.log(rows)
     if (!card) addErrorMessage(message, "add");
     else {
       addCardMessage(message, "add");
@@ -202,7 +202,6 @@ const Body = () => {
           </Row>
 
           <ContentPaper variant="outlined">
-            {console.log(messages)}
             {messages.filter((m) => (m.tag === "all" || m.tag === "add")).map((m, i) => (
               <Typography variant="body2" key={m + i} style={{ color: m.color }}>
                 {m.message}
