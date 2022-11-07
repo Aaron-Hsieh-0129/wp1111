@@ -2,12 +2,6 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## 基礎要求
-
-**!!!請先在hw5/frontend及hw5/backend兩個資料夾下執行`yarn` or `npm install`，再去hw5資料夾底下執行`yarn server`及`yarn start`**
-
-完成Number Guessing Game
-
 ## Available Scripts
 
 In the project directory, you can run:
