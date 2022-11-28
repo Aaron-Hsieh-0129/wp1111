@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import styled from 'styled-components';
 import {useChat} from './hooks/useChat';
 import { useState,  useEffect, useRef } from 'react';
@@ -122,6 +123,7 @@ const ChatRoom = () => {
           
             setChatBoxes(newState);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [messages]);
     
 
