@@ -23,8 +23,8 @@ db.once('open', () => {
         // ws.box = '';
         // ws.onmessage = wsConnect.onMessage(wss, ws);
 
-        wsConnect.initData(ws);
-        ws.onmessage = wsConnect.onMessage(ws);
+        // wsConnect.initData(ws);
+        ws.onmessage = wsConnect.onMessage(ws, wss.clients);
     });
 });
 

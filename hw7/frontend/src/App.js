@@ -18,6 +18,7 @@ const App = () => {
     const {status, signedIn, displayStatus} = useChat();
     useEffect(() => {
         displayStatus(status);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [status]);
 
     return (

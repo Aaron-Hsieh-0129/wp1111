@@ -40,7 +40,7 @@ const ChatProvider = (props) => {
                 setMessages(payload);
                 break;
             case "output":
-                setMessages(() => [...messages, ...payload]);
+                setMessages({"name": payload[0], "to": payload[1], "content": payload[2], "type": "sent"});
                 break;
             case "status":
                 setStatus(payload);
@@ -49,29 +49,29 @@ const ChatProvider = (props) => {
                 setMessages([]);
                 break;
             }
+            case "CHAT_R":
+                setMessages({"name": payload[1], "type": "history", "content": payload[0]});
+                break;
+
             default: break;
-        }   
+        }
     };
 
     const startChat = (name, to) => {
         if (!name || !to) throw new Error('Name or to required.');
-        sendData({
+        sendData(["chat", {
             type: 'CHAT',
             payload: {name, to},
-        });
+        }]);
     };
 
-    const sendMessage = (payload) => {
     // TODO 
-    // const sendMessage = (name, to, body) => {
-        // if (!name || !to || !body) throw new Error('name or to or body required.');
-        // sendData({
-        //     type: "MESSAGE",
-        //     payload: {name, to, body},
-        // });
-
-        console.log(payload);
-        sendData(["input", payload]);
+    const sendMessage = (name, to, body) => {
+        if (!name || !to || !body) throw new Error('name or to or body required.');
+        sendData(["message", {
+            type: "MESSAGE",
+            payload: {name, to, body},
+        }]);
     };
 
     const displayStatus = (payload) => {
@@ -90,6 +90,7 @@ const ChatProvider = (props) => {
         }
     };
 
+  
     useEffect(() => {
         if (signedIn) {
             localStorage.setItem(LOCALSTORAGE_KEY, me);
@@ -108,7 +109,8 @@ const ChatProvider = (props) => {
                 startChat,
                 sendMessage,
                 clearMessages,
-                displayStatus
+                displayStatus,
+
             }}
             {...props}
         />

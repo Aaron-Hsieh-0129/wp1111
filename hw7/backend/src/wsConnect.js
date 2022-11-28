@@ -20,8 +20,8 @@ const sendStatus = (payload, ws) => {
     sendData(["status", payload], ws);
 };
 
-const broadcastMessage = (wss, data, status) => {
-    wss.clents.forEach((client) => {
+const broadcastMessage = (clients, data, status) => {
+    clients.forEach((client) => {
         sendData(data, client);
         sendStatus(status, client);
     });
@@ -34,7 +34,7 @@ export default {
             sendData(["init", res], ws);
         });
     },
-    onMessage: (ws) => (
+    onMessage: (ws, clients) => (
         async (byteString) => {
             const {data} = byteString;
             const [task, payload] = JSON.parse(data);
@@ -72,7 +72,6 @@ export default {
                 // }
                 case 'input':
                     const {name, body} = payload;
-                    console.log(payload);
                     const message = new Message({name, body});
                     try {
                         await message.save();
@@ -92,6 +91,46 @@ export default {
                         sendData(['cleared'], ws);
                         sendStatus({type: 'info', msg: 'Message cache cleared.'}, ws);
                     })
+                    break;
+                }
+                case "chat": {
+                    const {name, to} = payload['payload'];
+                    const type = payload['type'];
+                    if (type === "CHAT") {
+                        Message.find({"name": {"$in": [name, to]}}).sort({created_at: -1}).exec((err, res) => {
+                            if (err) throw err;
+                            sendData(['CHAT_R', [res, to]], ws);
+                        });
+                    }
+                    break;
+                }
+                case "message": {
+                    const {name, to, body} = payload['payload'];
+                    const type = payload['type'];
+                    if (type === "MESSAGE") {
+                        const message = new Message({name, to, body});
+                        try {
+                            await message.save();
+                        } catch (e) {
+                            throw new Error("Message DB save error: " + e);
+                        }
+                        // sendData(['output', [name, to, body]], ws);
+                        // sendStatus({
+                        //     type: "success",
+                        //     msg: "Message sent."
+                        // }, ws);
+
+                        broadcastMessage(
+                            clients,
+                            ["output", [name, to, body]],
+                            {
+                                type: "success",
+                                msg: "Message sent",
+                            }
+                        );
+                        break;
+    
+                    }
                     break;
                 }
 
