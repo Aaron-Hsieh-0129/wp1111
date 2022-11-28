@@ -20,10 +20,9 @@ const sendStatus = (payload, ws) => {
     sendData(["status", payload], ws);
 };
 
-const broadcastMessage = (clients, data, status) => {
+const broadcastMessage = (clients, data, status, name) => {
     clients.forEach((client) => {
         sendData(data, client);
-        sendStatus(status, client);
     });
 }
 
@@ -115,10 +114,7 @@ export default {
                             throw new Error("Message DB save error: " + e);
                         }
                         // sendData(['output', [name, to, body]], ws);
-                        // sendStatus({
-                        //     type: "success",
-                        //     msg: "Message sent."
-                        // }, ws);
+                        
 
                         broadcastMessage(
                             clients,
@@ -126,8 +122,14 @@ export default {
                             {
                                 type: "success",
                                 msg: "Message sent",
-                            }
+                            },
                         );
+
+                        sendStatus({
+                            type: "success",
+                            msg: "Message sent."
+                        }, ws);
+                        
                         break;
     
                     }
