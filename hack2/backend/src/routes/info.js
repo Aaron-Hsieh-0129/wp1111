@@ -25,18 +25,60 @@ exports.GetSearch = async (req, res) => {
     // When fail,
     //   do `res.status(403).send({ message: 'error', contents: ... })` 
     
-
     // TODO Part I-3-a: find the information to all restaurants
-    console.log(req);
-    db.collection.find({condition}).exec((err, data) => {
-        console.log(condition)
-        if (err) {
-            res.status(403).send({message: 'error', contents: {err}})
-        }
-        res.status(200).send({message: 'success', contents: []});
-    })
+    const priceFilterNum = priceFilter?.map((c) => c.length);
+    if (!priceFilterNum && !mealFilter && !typeFilter) {
+        Info.find().sort({[sortBy]: 1}).exec((err, data) => {
+            if (err) res.status(403).send({message: 'error', contents: []})
+            res.status(200).send({message: 'success', contents: data});
+        })
+    }
+    else if (priceFilterNum && !mealFilter && !typeFilter) {
+        Info.find({"price": {"$in": [...priceFilterNum]}}).sort({[sortBy]: 1}).exec((err, data) => {
+            if (err) res.status(403).send({message: 'error', contents: []})
+            res.status(200).send({message: 'success', contents: data});
+        })
+    }
+    else if (!priceFilterNum && mealFilter && !typeFilter) {
+        Info.find({"tag": {"$in": [...mealFilter]}}).sort({[sortBy]: 1}).exec((err, data) => {
+            if (err) res.status(403).send({message: 'error', contents: []})
+            res.status(200).send({message: 'success', contents: data});
+        })
+    }
+    else if (!priceFilterNum && !mealFilter && typeFilter) {
+        Info.find({"tag": {"$in": [...typeFilter]}}).sort({[sortBy]: 1}).exec((err, data) => {
+            if (err) res.status(403).send({message: 'error', contents: []})
+            res.status(200).send({message: 'success', contents: data});
+        })
+    }
+    else if (priceFilterNum && mealFilter && !typeFilter) {
+        Info.find({$and: [{"price": {"$in": [...priceFilterNum]}}, {"tag": {"$in": [...mealFilter]}}]}).sort({[sortBy]: 1}).exec((err, data) => {
+            if (err) res.status(403).send({message: 'error', contents: []})
+            res.status(200).send({message: 'success', contents: data});
+        })
+    }
+    else if (priceFilterNum && !mealFilter && typeFilter) {
+        Info.find({$and: [{"price": {"$in": [...priceFilterNum]}}, {"tag": {"$in": [...typeFilter]}}]}).sort({[sortBy]: 1}).exec((err, data) => {
+            if (err) res.status(403).send({message: 'error', contents: []})
+            res.status(200).send({message: 'success', contents: data});
+        })
+    }
+    else if (!priceFilterNum && mealFilter && typeFilter) {
+        Info.find({$and: [{"tag": {"$in": [...mealFilter]}}, {"tag": {"$in": [...typeFilter]}}]}).sort({[sortBy]: 1}).exec((err, data) => {
+            if (err) res.status(403).send({message: 'error', contents: []})
+            res.status(200).send({message: 'success', contents: data});
+        })
+    }
+    else {
+        Info.find({$and: [{"price": {"$in": [...priceFilterNum]}}, {$and: [{"tag": {"$in": [...mealFilter]}}, {"tag": {"$in": [...typeFilter]}}]}]}).sort({[sortBy]: 1}).exec((err, data) => {
+            if (err) res.status(403).send({message: 'error', contents: []})
+            res.status(200).send({message: 'success', contents: data});
+        })
+    }
     
+
     // TODO Part II-2-a: revise the route so that the result is filtered with priceFilter, mealFilter and typeFilter
+    
     // TODO Part II-2-b: revise the route so that the result is sorted by sortBy
 }
 
@@ -58,4 +100,9 @@ exports.GetInfo = async (req, res) => {
     // }
 
     // TODO Part III-2: find the information to the restaurant with the id that the user requests
+    Info.find({"id": id}).exec((err, data) => {
+        if (err) res.status(403).send({message: 'error', contents: []})
+        res.status(200).send({message: 'success', contents: data});
+    });
+
 }

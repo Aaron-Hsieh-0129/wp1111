@@ -35,10 +35,9 @@ const dboptions = {
 
 // TODO Part I-3: check .env exists
 
-
 mongoose.connect(
     // TODO Part I-3: connect the backend to mongoDB
-    process.env.MONGO_URL, dboptions,
+    process.env.MONGO_URL,dboptions
 ).then(async res => {
     if (process.env.MODE === 'Reset') {
         console.log('Reset Mode: reset the data')
@@ -49,6 +48,7 @@ mongoose.connect(
 // TODO Part I-3: check DB connection
 mongoose.connection.on('error', console.error.bind(console, 'connection error'));
 
-app.listen(port, () =>
-    console.log(`Example app listening on port ${port}!`),
-);
+routes(app)
+app.listen(port, () => {
+    console.log(`Server is up on port ${port}.`)
+})
