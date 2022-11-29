@@ -1,0 +1,25 @@
+;FFMETADATA1
+[CHAPTER]
+TIMEBASE=1/1000
+START=21060
+END=26056
+title=111-1 WP Hackathon 2 Public Test
+  (30%) Part I - Basic Search (5%) 1. Navigation to search page ( 5%) 1.  | Clicking Search Button navigates the user to /search page
+[CHAPTER]
+TIMEBASE=1/1000
+START=30868
+END=31069
+title=111-1 WP Hackathon 2 Public Test
+  (30%) Part I - Basic Search (10%) 2. Search page front-end (10%) 2.  | Search page structure is the same as spec
+[CHAPTER]
+TIMEBASE=1/1000
+START=29475
+END=31272
+title=111-1 WP Hackathon 2 Public Test
+  (30%) Part I - Basic Search (15%) 3. Query and display search result (10%) 3a. | /api/getSearch returns search results
+[CHAPTER]
+TIMEBASE=1/1000
+START=29966
+END=33319
+title=111-1 WP Hackathon 2 Public Test
+  (30%) Part I - Basic Search (15%) 3. Query and display search result ( 5%) 3b. | Search page shows result from backend
