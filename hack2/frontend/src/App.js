@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+/****************************************************************************
+  FileName      [ App.js ]
+  PackageName   [ src ]
+  Author        [ Chin-Yi Cheng ]
+  Synopsis      [ Implement the router ]
+  Copyright     [ 2022 11 ]
+****************************************************************************/
+
+import './css/App.css';
+
+import { React, useState, useEffect } from 'react'
+import NavBar from './components/navigationBar';
+import MainPage from './container/mainPage';
+import SearchPage from './container/searchPage';
+import RestaurantPage from './container/restaurantPage';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <NavBar />
+            <Routes>
+                <Route path="/" element={<MainPage />} />
+                <Route path="/search" element={<SearchPage />} />
+                <Route path="/restaurant/:id" element={<RestaurantPage />} />
+            </Routes>
+
+        </Router>
+    );
 }
 
 export default App;
