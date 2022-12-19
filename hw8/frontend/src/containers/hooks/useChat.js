@@ -68,58 +68,7 @@ const ChatProvider = (props) => {
                 }
             })
         } catch(e) {}
-    }, [subscribeToMore, getChatBox]);
-
-
-    // const sendData = async (data) => {
-    //     await client.send(JSON.stringify(data));
-    // };
-
-    // const clearMessages = () => {
-    //     sendData(["clear"]);
-    // };
-
-
-    // client.onmessage = (byteString) => {
-    //     const {data} = byteString;
-    //     const [task, payload] = JSON.parse(data);
-    //     switch (task) {
-    //         case "init":
-    //             setMessages(payload);
-    //             break;
-    //         case "output":
-    //             setMessages({"name": payload[0], "to": payload[1], "content": payload[2], "type": "sent"});
-    //             break;
-    //         case "status":
-    //             setStatus(payload);
-    //             break;
-    //         case "cleared": {
-    //             setMessages([]);
-    //             break;
-    //         }
-    //         case "CHAT_R":
-    //             setMessages({"name": payload[1], "type": "history", "content": payload[0]});
-    //             break;
-
-    //         default: break;
-    //     }
-    // };
-
-    // const startChat = (name, to) => {
-    //     if (!name || !to) throw new Error('Name or to required.');
-    //     sendData(["chat", {
-    //         type: 'CHAT',
-    //         payload: {name, to},
-    //     }]);
-    // };
-
-    // const sendMessage = (name, to, body) => {
-    //     if (!name || !to || !body) throw new Error('name or to or body required.');
-    //     sendData(["message", {
-    //         type: "MESSAGE",
-    //         payload: {name, to, body},
-    //     }]);
-    // };
+    }, [subscribeToMore], { data, loading, subscribeToMore });
 
     const displayStatus = (payload) => {
         if (payload.msg) {
