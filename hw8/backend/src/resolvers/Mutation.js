@@ -12,8 +12,8 @@ const checkOutChatBox = async (name1, name2, ChatBoxModel) => {
 };
 
 const Mutation = {
-    createChatBox: (parent, {name1, name2}, {ChatBoxModel}) => {
-        return checkOutChatBox(name1, name2, ChatBoxModel);
+    createChatBox: async (parent, {name1, name2}, {ChatBoxModel}) => {
+        return await checkOutChatBox(name1, name2, ChatBoxModel);
     },
 
     createMessage: async (parent, {name, to, body}, {ChatBoxModel, pubsub}) => {

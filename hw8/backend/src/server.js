@@ -32,7 +32,7 @@ const yoga = createYoga({
     pubsub,
   },
   graphiql: {
-    subscriptionsProtocol: 'WS',
+    subscriptionsProtocol: "WS"
   }
 });
 

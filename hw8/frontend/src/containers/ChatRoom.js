@@ -30,9 +30,8 @@ const FootRef = styled.div`
 `;
 
 const ChatRoom = () => {
-    const {me, messages, sendMessage, startChat, displayStatus} = useChat();
+    const {me, messages, activeKey, sendMessage, startChat, displayStatus, setActiveKey, setMessages, getChatBox, data} = useChat();
     const [chatBoxes, setChatBoxes] = useState([]);
-    const [activeKey, setActiveKey] = useState('');
     // const [username, setUsername] = useState("");
     const [msg, setMsg] = useState("");
     const [msgSent, setMsgSent] = useState(false);
@@ -55,74 +54,86 @@ const ChatRoom = () => {
         return [name, to].sort().join('_');
     }
 
-    const createChatBox = (name) => {
+    const createChatBox = async (name) => {
         if (chatBoxes.find(c => c.label === name)) return;
-        startChat(me, name);
+        await startChat({variables: {name1: me, name2: name}}).then((result) => {
+            setMessages(result.data.createChatBox);
+        });
+
+        getChatBox();
         return makeName(name, me);
     };
 
     useEffect(() => {
-        const key = makeName(messages.name, me);
-        if (messages.type === "history") {
-            setChatBoxes(cur => cur = 
-                [...cur,
-                    {
-                        label: messages.name,
-                        key: key,
-                        children: messages.content.length === 0
-                            ?
-                                <ChatBoxWrapper >
-                                    <p style={{ color: "#ccc" }}>No messages...</p>
-                                    <FootRef ref={msgFooter} /> 
-                                </ChatBoxWrapper>
-                            :
-                                <ChatBoxWrapper >
-                                {messages.content.map(({name, to, body}, i) => {
-                                    let temp = activeKey.split('_').filter(c => c !== me)[0];
-                                    if (!temp) temp = me
-                                    if (name === me && to === temp)
-                                        return (
-                                                <Message name={name} isMe={true} message={body} key={i} />
-                                        )
-                                    else if (to === me && name === temp)
-                                        return (
-                                                <Message name={name} isMe={false} message={body} key={i} />
-                                        ) 
-                                })}
-                                    <FootRef ref={msgFooter} /> 
-                                </ChatBoxWrapper>
-                    }
-                ]
-            );
-        }
-        if (messages.type === "sent") {
-            const newState = chatBoxes.map(cur => {
+        if (messages.length !== 0) {
+            if (messages?.messages) {
                 let temp = activeKey.split('_').filter(c => c !== me)[0];
                 if (!temp) temp = me
-                if (me === messages.name && temp === messages.to) {
-                    const len = cur.children.props["children"][0].length;
-                    return {...cur,
-                                children: {
-                                    ...cur.children,
-                                    props:{
-                                        ...cur.children.props,
-                                        children: cur.children.props['children'].map((c, i) => {
-                                            if (i === 0) {
-                                                return [...c, <Message name={me} isMe={true} message={messages.content} key={len+1} />];
-                                            }
-                                            else {
-                                                return c
-                                            }
-                                        })
+                setChatBoxes(cur => cur = 
+                    [...cur,
+                        {
+                            label: temp,
+                            key: messages.name,
+                            children: messages.messages.length === 0
+                                ?
+                                    <ChatBoxWrapper >
+                                        <p style={{ color: "#ccc" }}>No messages...</p>
+                                        <FootRef ref={msgFooter} /> 
+                                    </ChatBoxWrapper>
+                                :
+                                    <ChatBoxWrapper >
+                                    {messages.messages.map(({sender, body}, i) => {
+                                        let to = messages.name.split('_').filter(c => c !== sender)[0];
+                                        if (!to) to = sender;
+
+                                        
+                                        if (sender === me && to === temp)
+                                            return (
+                                                    <Message name={sender} isMe={true} message={body} key={i} />
+                                            )
+                                        else if (to === me && sender === temp)
+                                            return (
+                                                    <Message name={sender} isMe={false} message={body} key={i} />
+                                            ) 
+                                    })}
+                                        <FootRef ref={msgFooter} /> 
+                                    </ChatBoxWrapper>
+                        }
+                    ]
+                );
+            }
+            else {
+                const newState = chatBoxes.map(cur => {
+                    if (me === messages[0].sender) {
+                        const len = cur.children.props["children"][0].length;
+                        return {...cur,
+                                    children: {
+                                        ...cur.children,
+                                        props:{
+                                            ...cur.children.props,
+                                            children: cur.children.props['children'].map((c, i) => {
+                                                if (i === 0) {
+                                                    return [...c, <Message name={me} isMe={true} message={messages[0].body} key={len+1} />];
+                                                }
+                                                else {
+                                                    return c
+                                                }
+                                            })
+                                        }
                                     }
-                                }
-                            };
-                }
-                return cur;
-            });
-          
-            setChatBoxes(newState);
+                                };
+                    }
+                    return cur;
+                });
+
+                let temp = activeKey.split('_').filter(c => c !== me)[0];
+                if (!temp) temp = me
+                
+                setChatBoxes(newState);
+            }
         }
+        
+        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [messages]);
     
@@ -139,11 +150,6 @@ const ChatRoom = () => {
         <>
             <Title name={me} />
             <>
-            {/* <ChatBoxesWrapper>
-                {displayMessages()}
-                <FootRef ref={msgFooter} />
-            </ChatBoxesWrapper> */}
-            {/* // TODO */}
             <ChatBoxesWrapper 
                 tabBarStyle={{height: '36px'}}
                 type="editable-card"
@@ -174,8 +180,9 @@ const ChatRoom = () => {
             ></ChatBoxesWrapper>
             <ChatModal
                 open={modalOpen}
-                onCreate={({name}) => {
-                    setActiveKey(createChatBox(name));
+                onCreate={async ({name}) => {
+                    setActiveKey(makeName(me, name));
+                    createChatBox(name);
                     setModalOpen(false);
                 }}
                 onCancel={() => {
@@ -183,17 +190,6 @@ const ChatRoom = () => {
                 }}
                 
             />
-            {/* <Input
-                value={username}
-                placeholder="Username"
-                style={{ marginBottom: 10 }}
-                onChange={(e) => setUsername(e.target.value)}
-                onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                        msgRef.current.focus();
-                    }
-                }}
-            ></Input> */}
             <Input.Search
                 ref={msgRef}
                 value={msg}
@@ -212,7 +208,18 @@ const ChatRoom = () => {
                     }
                     let temp = activeKey.split('_').filter(c => c !== me)[0];
                     if (!temp) temp = me
-                    sendMessage(me, temp, msg);
+                    sendMessage({variables: {name: me, to: temp, body: msg}}).then((result) => {
+                        getChatBox();
+                        setMessages([result.data.createMessage]);
+                        // console.log(messages);
+                        // console.log(chatBoxes)
+                    });
+                    
+                    // setMessages([da])
+                    // console.log("data: ", data);
+                    // console.log("mes: ", data.chatbox.messages[data.chatbox.messages.length - 1])
+                    // setMessages(msg)
+                    // console.log("mmmmes: ", messages);
                     setMsg("");
                     setMsgSent(true);
                 }}

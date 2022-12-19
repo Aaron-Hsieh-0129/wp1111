@@ -1,7 +1,7 @@
 import {useState, useEffect, createContext, useContext} from "react";
 import {message} from 'antd';
-import { useQuery, useMutation } from "@apollo/client";
-import { CHATBOX_QUERY, CREATE_CHATBOX_MUTATION, MESSAGE_SUBSCRIPTION } from "../../graphql";
+import { useQuery, useMutation, useLazyQuery } from "@apollo/client";
+import { CHATBOX_QUERY, CREATE_CHATBOX_MUTATION, MESSAGE_SUBSCRIPTION, CREATE_MESSAGE_MUTATION } from "../../graphql";
 
 const LOCALSTORAGE_KEY = "save-me";
 const savedMe = localStorage.getItem(LOCALSTORAGE_KEY);
@@ -11,22 +11,30 @@ const ChatContext = createContext({
    me: "",
    signedIn: false,
    messages: [],
+   activeKey: '',
+   setMe: () => {},
+   setSignedIn: () => {},
+   setActiveKey: () => {},
+   setMessages: () => {},
    startChat: () => {},
    sendMessage: () => {},
-   clearMessages: () => {}, 
+   displayStatus: () => {}, 
+   getChatBox: () => {},
+   data: {}
 });
 
-const client = new WebSocket('ws://localhost:4000');
 
-// FIXME
-const friend = "error";
 const ChatProvider = (props) => {
     const [messages, setMessages] = useState([]);
     const [status, setStatus] = useState({});
     const [signedIn, setSignedIn] = useState(false);
     const [me, setMe] = useState(savedMe || '');
+    const [activeKey, setActiveKey] = useState('');
 
-    const {data, loading, subscribeToMore} = useQuery(CHATBOX_QUERY, {
+    let friend = activeKey.split('_').filter(c => c !== me)[0];
+    if (!friend) friend = me;
+    const [getChatBox, { data, loading, subscribeToMore }] = useLazyQuery(CHATBOX_QUERY, {
+        fetchPolciy: 'cache-and-network',
         variables: {
             name1: me,
             name2: friend
@@ -35,58 +43,67 @@ const ChatProvider = (props) => {
 
     const [startChat] = useMutation(CREATE_CHATBOX_MUTATION);
 
+    const [sendMessage] = useMutation(CREATE_MESSAGE_MUTATION);
+
+
     useEffect(() => {
-        try {
+        try { 
+            let friend = activeKey.split('_').filter(c => c !== me)[0];
+            if (!friend) friend = me;
             subscribeToMore({
                 document: MESSAGE_SUBSCRIPTION,
                 variables: {from: me, to: friend},
                 updateQuery: (prev, {subscriptionData}) => {
+                    console.log({ prev: prev, subscriptionData: subscriptionData });
                     if (!subscriptionData.data) return prev;
-                    const newMessage = subscriptionData.data.message.message;
+                    const newMessage = subscriptionData.data.message;
+                    // console.log(newMessage);
                     return {
-                        chatBox: {
-                            messages: [...prev.chatBox.messages, newMessage]
+                        ...prev.chatbox,
+                        chatbox: {
+                            name: activeKey,
+                            messages: [...prev.chatbox.messages, newMessage]
                         }
                     }
                 }
             })
         } catch(e) {}
-    }, [subscribeToMore]);
+    }, [subscribeToMore, getChatBox]);
 
 
-    const sendData = async (data) => {
-        await client.send(JSON.stringify(data));
-    };
+    // const sendData = async (data) => {
+    //     await client.send(JSON.stringify(data));
+    // };
 
-    const clearMessages = () => {
-        sendData(["clear"]);
-    };
+    // const clearMessages = () => {
+    //     sendData(["clear"]);
+    // };
 
 
-    client.onmessage = (byteString) => {
-        const {data} = byteString;
-        const [task, payload] = JSON.parse(data);
-        switch (task) {
-            case "init":
-                setMessages(payload);
-                break;
-            case "output":
-                setMessages({"name": payload[0], "to": payload[1], "content": payload[2], "type": "sent"});
-                break;
-            case "status":
-                setStatus(payload);
-                break;
-            case "cleared": {
-                setMessages([]);
-                break;
-            }
-            case "CHAT_R":
-                setMessages({"name": payload[1], "type": "history", "content": payload[0]});
-                break;
+    // client.onmessage = (byteString) => {
+    //     const {data} = byteString;
+    //     const [task, payload] = JSON.parse(data);
+    //     switch (task) {
+    //         case "init":
+    //             setMessages(payload);
+    //             break;
+    //         case "output":
+    //             setMessages({"name": payload[0], "to": payload[1], "content": payload[2], "type": "sent"});
+    //             break;
+    //         case "status":
+    //             setStatus(payload);
+    //             break;
+    //         case "cleared": {
+    //             setMessages([]);
+    //             break;
+    //         }
+    //         case "CHAT_R":
+    //             setMessages({"name": payload[1], "type": "history", "content": payload[0]});
+    //             break;
 
-            default: break;
-        }
-    };
+    //         default: break;
+    //     }
+    // };
 
     // const startChat = (name, to) => {
     //     if (!name || !to) throw new Error('Name or to required.');
@@ -96,13 +113,13 @@ const ChatProvider = (props) => {
     //     }]);
     // };
 
-    const sendMessage = (name, to, body) => {
-        if (!name || !to || !body) throw new Error('name or to or body required.');
-        sendData(["message", {
-            type: "MESSAGE",
-            payload: {name, to, body},
-        }]);
-    };
+    // const sendMessage = (name, to, body) => {
+    //     if (!name || !to || !body) throw new Error('name or to or body required.');
+    //     sendData(["message", {
+    //         type: "MESSAGE",
+    //         payload: {name, to, body},
+    //     }]);
+    // };
 
     const displayStatus = (payload) => {
         if (payload.msg) {
@@ -134,12 +151,16 @@ const ChatProvider = (props) => {
                 me,
                 signedIn,
                 messages,
+                activeKey,
                 setMe,
                 setSignedIn,
+                setActiveKey,
+                setMessages,
                 startChat,
                 sendMessage,
-                clearMessages,
                 displayStatus,
+                getChatBox,
+                data
 
             }}
             {...props}
