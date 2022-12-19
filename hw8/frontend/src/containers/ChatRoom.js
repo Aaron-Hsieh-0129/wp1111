@@ -106,22 +106,45 @@ const ChatRoom = () => {
                 const newState = chatBoxes.map(cur => {
                     if (me === messages[0].sender) {
                         const len = cur.children.props["children"][0].length;
-                        return {...cur,
-                                    children: {
-                                        ...cur.children,
-                                        props:{
-                                            ...cur.children.props,
-                                            children: cur.children.props['children'].map((c, i) => {
-                                                if (i === 0) {
-                                                    return [...c, <Message name={me} isMe={true} message={messages[0].body} key={len+1} />];
-                                                }
-                                                else {
-                                                    return c
-                                                }
-                                            })
-                                        }
+                        // console.log(cur.children.props['children'][0])
+                        // console.log(cur.children.props['children'])
+                        if (cur.children.props['children'][0].key !== null) {
+                            return {...cur,
+                                children: {
+                                    ...cur.children,
+                                    props:{
+                                        ...cur.children.props,
+                                        children: cur.children.props['children'].map((c, i) => {
+                                            if (i === 0) {
+                                                return [...c, <Message name={me} isMe={true} message={messages[0].body} key={len+1} />];
+                                            }
+                                            else {
+                                                return c
+                                            }
+                                        })
                                     }
-                                };
+                                }
+                            };
+                        }
+                        else {
+                            return {...cur,
+                                children: {
+                                    ...cur.children,
+                                    props:{
+                                        ...cur.children.props,
+                                        children: cur.children.props['children'].map((c, i) => {
+                                            if (i === 0) {
+                                                return [<Message name={me} isMe={true} message={messages[0].body} key={len+1} />];
+                                            }
+                                            else {
+                                                return c
+                                            }
+                                        })
+                                    }
+                                }
+                            };
+                        }
+                        
                     }
                     return cur;
                 });

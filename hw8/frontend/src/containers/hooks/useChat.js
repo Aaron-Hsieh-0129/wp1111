@@ -54,7 +54,7 @@ const ChatProvider = (props) => {
                 document: MESSAGE_SUBSCRIPTION,
                 variables: {from: me, to: friend},
                 updateQuery: (prev, {subscriptionData}) => {
-                    console.log({ prev: prev, subscriptionData: subscriptionData });
+                    // console.log({ prev: prev, subscriptionData: subscriptionData });
                     if (!subscriptionData.data) return prev;
                     const newMessage = subscriptionData.data.message;
                     // console.log(newMessage);
@@ -68,7 +68,7 @@ const ChatProvider = (props) => {
                 }
             })
         } catch(e) {}
-    }, [subscribeToMore], { data, loading, subscribeToMore });
+    }, [subscribeToMore, data]);
 
     const displayStatus = (payload) => {
         if (payload.msg) {
