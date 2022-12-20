@@ -63,6 +63,23 @@ function Home() {
   );
   
   // TODO 6.5 Logic of subscription
+  useEffect(
+    () => {
+      subscribeToMore({
+        document: ITEM_DELETED_SUBSCRIPTION,
+        updateQuery: (prev, { subscriptionData }) => {
+          // console.log(prev);
+          // console.log(subscriptionData)
+          // if (!subscriptionData.data) return prev;
+          // const updatedItem = subscriptionData.data.item;
+          // return {
+          //   items: prev.items.map((item) => (item.id === updatedItem.id ? updatedItem : item)),
+          // };
+        },
+      });
+    },
+    [subscribeToMore],
+  );
 
   // TODO 6.5 End 
 

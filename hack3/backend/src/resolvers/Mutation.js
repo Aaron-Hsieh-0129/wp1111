@@ -38,10 +38,13 @@ const Mutation = {
   deleteItem: async (parent, { id }, {itemModel, pubSub}) => {
     await itemModel.deleteOne({ id: id });
     // console.log(id)
+
+    pubSub.publish("ITEM_DELETED", {
+      itemDeleted: id
+    });
+
     return id;
   }
-
-  
   // TODO 6.3 Publish itemDeleted
 
   // TODO 5.2 End
