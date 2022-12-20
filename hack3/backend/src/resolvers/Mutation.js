@@ -36,8 +36,8 @@ const Mutation = {
   },
   // TODO 5.2 Define the itemDelete mutation resolver
   deleteItem: async (parent, { id }, {itemModel, pubSub}) => {
-    // await itemModel.deleteOne({ id: input.id });
-    console.log(id)
+    await itemModel.deleteOne({ id: id });
+    // console.log(id)
     return id;
   }
 
