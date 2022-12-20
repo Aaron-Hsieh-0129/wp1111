@@ -43,6 +43,12 @@ function Row({
     updateItem({
       variables: {
         // TODO 4 Use `updateItem` and pass the correct variables
+        id: item.id,
+        name: item.name,
+        amount: item.amount,
+        category: item.category,
+        date: item.date,
+        description: item.description,
 
         // TODO End
         onError: (err) => {
