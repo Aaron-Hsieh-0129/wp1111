@@ -68,8 +68,8 @@ function Home() {
       subscribeToMore({
         document: ITEM_DELETED_SUBSCRIPTION,
         updateQuery: (prev, { subscriptionData }) => {
-          // console.log(prev);
-          // console.log(subscriptionData)
+          console.log(prev);
+          console.log(subscriptionData)
           // if (!subscriptionData.data) return prev;
           // const updatedItem = subscriptionData.data.item;
           // return {
