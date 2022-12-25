@@ -16,7 +16,7 @@ import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 
 import { useStyles } from '../hooks';
-import axios from '../api';
+import api from '../api';
 import { useScoreCard } from '../hooks/useScoreCard';
 
 const Wrapper = styled.section`
@@ -120,7 +120,7 @@ const Body = () => {
     // console.log("score: ", score);
     const {
       data: { message, card, rows },
-    } = await axios.post('/card', {
+    } = await api.post('/card', {
       name,
       subject,
       score,
@@ -140,7 +140,7 @@ const Body = () => {
   const handleQuery = async () => {
     const {
       data: { messages, message, queryRow },
-    } = await axios.get('/cards', {
+    } = await api.get('/cards', {
       params: {
         type: queryType,
         queryString,

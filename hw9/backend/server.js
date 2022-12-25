@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import db from './db';
-import routes from './routes';
+import db from './src/db';
+import routes from './src/routes';
 import path from "path";
 
 db.connect();
