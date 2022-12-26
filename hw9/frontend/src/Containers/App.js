@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 const Wrapper = styled.div`
   margin: auto;
   width: 100%;
-  height: 100vh;
+  height: 120vh;
   display: flex;
   flex-direction: column;
   align-items: center;
