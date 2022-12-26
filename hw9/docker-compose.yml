@@ -1,0 +1,11 @@
+version: "4.15"
+services:
+    app:
+        build: .
+        environment:
+            - MONGO_URL=mongodb+srv://Aaron:6HukwO6OqnRVzFL6@cluster0.7bhp53e.mongodb.net/?retryWrites=true&w=majorityvalue
+        ports: 
+            - "127.0.0.1:8001:8001"
+
+    redisb:
+        image: redis
