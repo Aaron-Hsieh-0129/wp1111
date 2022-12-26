@@ -2,7 +2,11 @@
 
 ## 全端服務網址
 
+wp1111-production-0559.up.railway.app
+
 ## 開啟日期及時段
+
+2022/12/26 09:00 ~ 2023/01/02 23:59
 
 ## Deployment流程
 
@@ -20,3 +24,12 @@
 ### Docker
 
 1. 在hw9/建立Dockerfile
+2. 建立docker-compose.yml（雖然這個好像沒什麼用就是了）
+
+### 最終結果
+
+![img](result.png)
+
+### 遇到的困難
+
+有點不懂為什麼在railway上build一開始都會失敗，但restart之後就好了，很困惑。
