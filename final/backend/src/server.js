@@ -56,7 +56,8 @@ const yoga = createYoga({
   },
   graphiql: {
     subscriptionsProtocol: 'WS',
-  }
+  },
+  landingPage: false
 })
 
 const server = createServer(yoga)
