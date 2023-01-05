@@ -77,7 +77,7 @@ const yoga = createYoga({
   graphiql: {
     subscriptionsProtocol: 'WS',
   },
-  landingPage: false
+  graphqlEndpoint: "/graphql" 
 })
 
 app.use('/graphql', yoga);
