@@ -38,3 +38,5 @@ Group 44
 * 其他事項：
   * 因為一開始我們都是在另一個repo做的，最後才丟到wp111底下，若有需要參考可以看：<https://github.com/Aaron-Hsieh-0129/WP-final-project>
   
+* 心得：
+  
