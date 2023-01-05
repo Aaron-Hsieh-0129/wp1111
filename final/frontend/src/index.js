@@ -29,7 +29,7 @@ const httpLink = new HttpLink({
 // Create a WebSocket link:
 const wsLink = new GraphQLWsLink(createClient({
     url: 'ws://localhost:4010/subscriptions',
-    options: { reconnect: true },
+    // options: { reconnect: true },
 }));
 
 // using the ability to split links, you can send data to each link
