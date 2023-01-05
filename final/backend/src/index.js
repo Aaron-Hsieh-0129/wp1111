@@ -28,13 +28,16 @@
 // server.listen(PORT, () => {
 //     console.log(`Server is up on port ${PORT}.`)
 // })
-
-
+import path from "path";
 // import GraphQL server
 import server from './server'
 // import MongoDB connection
-import mongo from './mongo'
+import mongo from './mongo';
+import express from 'express';
+
 mongo.connect();
+
+const app = express();
 
 // deployment
 if (process.env.NODE_ENV === "production") {
