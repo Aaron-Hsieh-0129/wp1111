@@ -89,7 +89,7 @@ const server = createServer(app)
 
 const wsServer = new WebSocketServer({
   server: server,
-  path: yoga.graphqlEndpoint,
+  path: '/subscriptions',
 })
 
 useServer(
