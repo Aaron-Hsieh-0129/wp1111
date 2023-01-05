@@ -46,7 +46,7 @@ const BrowseCourse = () => {
 
     const navigate = useNavigate();
     const ToChatRoom = (e) => {
-        if (!signedIn) {
+        if (!me) {
             alert("Please Sign In First");
             return;
         }
@@ -82,11 +82,11 @@ const BrowseCourse = () => {
     }, [data])
 
     return(
-        <div style={{display: "flex", flexDirection: "column",alignItems: "center", justifyContent: "center", margin: "1%", color: "black", flexWrap: 'wrap'}}>
+        <div style={{display: "flex", flexDirection: "column",alignItems: "center", justifyContent: "center", margin: "1%", color: "black"}}>
             <h1>Choose or Create A Course</h1>
             <Button icon={<ReadOutlined />} color="blue" size="large" onClick={() => {
                 // if (!signedIn) message.open({type: 'error', content: 'Please Sign In First'})
-                if (!signedIn) alert("Please Sign In First")
+                if (!me) alert("Please Sign In First")
                 else setModalOpen(true);
             }}> 
                 + 
@@ -155,12 +155,13 @@ const BrowseCourse = () => {
             <AddCourseModal
                 open={modalOpen}
                 onCreate={({ course, professor }) => {
+                    console.log(campus, course, professor, userObj.name)
                     sendCourse({
                         variables: {
-                            campusName: campus.replace(/\s/g, ""),
+                            campusName: campus,
                             courseName: course,
                             profName: professor,
-                            author: userObj.name
+                            author: me
                         }
                     })
 

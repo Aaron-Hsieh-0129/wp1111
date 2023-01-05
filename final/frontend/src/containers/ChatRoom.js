@@ -84,14 +84,17 @@ const ChatRoom = () => {
       , semester, setSemester
       , topic, setTopic
       , campus
-      , courseName
-      , professor
+      , courseName, setCourseName
+      , professor, setProfessor
+      , chatBoxes, setChatBoxes
       , displayStatus } = useDisplay()
 
-    const [chatBoxes, setChatBoxes] = useState([]) // [...{label, children, key}]
+    // const [chatBoxes, setChatBoxes] = useState([]) // [...{label, children, key}]
     const [msg, setMsg] = useState('')
     const [msgSent, setMsgSent] = useState(false) // ?
     const [modalOpen, setModalOpen] = useState(false)
+    const [lastCourseData, setLastCourseData] = useState()
+    const [complete, setComplete] = useState(false)
 
     const msgRef = useRef(null) // ?
     const msgFooter = useRef(null) // ?
@@ -108,7 +111,7 @@ const ChatRoom = () => {
 
     const createChatBox = async (semester, topic) => {
         if (chatBoxes.some(({key}) => key === semester)) {
-            console.log(chatBoxes.some(({key}) => key === semester))
+            // console.log(chatBoxes.some(({key}) => key === semester))
             throw new Error(semester + "'s chat box has already opened.");
         }
 
@@ -161,31 +164,57 @@ const ChatRoom = () => {
     useEffect( () => {
         console.log(courseData)
         if (courseData) {
-            let semesterList = courseData.course.semesters
-            if (semesterList.length == 0) {
-                setChatBoxes((chatBoxes) => ExtractChatbox({ chatBoxes, newMsgData: [], me, msgFooter, boxIndex:-1, boxName:'InitialPage'}))
-                setSemester("InitialPage")
-            }
+            if (courseData == lastCourseData) { console.log('Block') }
             else {
-                let chatboxList = []
-                for (let i = 0; i < semesterList.length; i++) {
-                    // console.log(courseData.course.semesters[i].chatboxes)
-                    // if (!courseData.course.semesters[i].chatboxes) continue
-                    // if (courseData.course.semesters[i].chatboxes.length == 0) continue
-                    for (let j = 0; j < semesterList[i].chatboxes.length; j++) {
-                        // console.log(i, j, semesterList[i].chatboxes[j])
-                        let boxName = semesterList[i].chatboxes[j].name
-                        boxName = boxName.split('_').slice(2, 4).join('_')
-                        const boxIndex = chatBoxes.findIndex(({key}) => key === boxName)
-                        let newMsgData = semesterList[i].chatboxes[j].messages
-                        if (!newMsgData) newMsgData = []
-                        setChatBoxes((chatBoxes) => ExtractChatbox({ chatBoxes, newMsgData, me, msgFooter, boxIndex, boxName }))
-                        setSemester(boxName)
+                setLastCourseData(courseData)
+                let semesterList = courseData.course.semesters
+                if (semesterList.length == 0) {
+                    setChatBoxes((chatBoxes) => ExtractChatbox({ chatBoxes, newMsgData: [], me, msgFooter, boxIndex:-1}))
+                    // setSemester("InitialPage")
+                }
+                else {
+                    let chatboxList = []
+                    for (let i = 0; i < semesterList.length; i++) {
+                        // console.log(courseData.course.semesters[i].chatboxes)
+                        // if (!courseData.course.semesters[i].chatboxes) continue
+                        // if (courseData.course.semesters[i].chatboxes.length == 0) continue
+                        for (let j = 0; j < semesterList[i].chatboxes.length; j++) {
+                            // console.log(i, j, semesterList[i].chatboxes[j])
+                            // console.log(semesterList[i].chatboxes[j])
+                            let boxName = semesterList[i].chatboxes[j].name
+                            boxName = boxName.split('_').slice(2, 4).join('_')
+                            const boxIndex = chatBoxes.findIndex(({key}) => key === boxName)
+                            let newMsgData = semesterList[i].chatboxes[j].messages
+                            if (!newMsgData) newMsgData = []
+                            // if (chatBoxes.map(item => item.label).indexOf())
+                            setChatBoxes((chatBoxes) => ExtractChatbox({ chatBoxes, newMsgData, me, msgFooter, boxIndex, boxName }))
+                            setSemester(boxName)
+                        }
                     }
                 }
             }
         }
+        // console.log(chatBoxes)
+        setComplete(true)
     }, [courseData] )
+
+    useEffect(() => {
+        // console.log(chatBoxes.map(item => item.label))
+        // console.log(chatBoxes)
+        if (complete) {
+
+            let reverseChatBox = chatBoxes.reverse()
+            reverseChatBox = reverseChatBox.filter((value, index, self) =>
+                index === self.findIndex((t) => (
+                    t.label === value.label
+                ))
+            )
+            setChatBoxes(
+                reverseChatBox.reverse()
+            )
+        }
+        // console.log(chatBoxes)
+    }, [complete])
 
 	useEffect(() => {
         subscribeToMore({
@@ -196,7 +225,6 @@ const ChatRoom = () => {
 				// console.log('data', subscriptionData.data)
                 if (!subscriptionData.data) return prev;
                 const newSemester = subscriptionData.data.semester;
-                console.log(prev)
                 return {
 					course: {
 						__typename: 'Course'
@@ -224,7 +252,14 @@ const ChatRoom = () => {
                 sx={{ flexGrow: 1 }}
                 style={{display: "flex", justifyContent: "space-between", color: "black"}}
             >   
-                <IconButton color="black" style={{color: "black"}} onClick={() => (navigate('/'))}>Novel Together Universe</IconButton>
+                <IconButton color="black" style={{color: "black"}} onClick={() => {
+                    navigate('/')
+                    setCourseName('')
+                    setProfessor('')
+                    setChatBoxes([])
+                }}>
+                    Novel Together Universe
+                </IconButton>
                 {/* <GoogleSignIn /> */}
             </Typography>
             </Toolbar>
@@ -306,6 +341,7 @@ const ChatRoom = () => {
                     setMsg('')
                     setMsgSent(true)
                 }}
+                style={{position: "relative", left: "6%", width: "90%"}}
             ></Input.Search>
         </ChatRoomWrapper>
         </div>

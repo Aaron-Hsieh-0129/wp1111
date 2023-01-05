@@ -11,7 +11,7 @@ import Grid from '@mui/material/Grid';
 
 const UserCourses = () => {
     /* global google */
-    const { campus, userObj, signedIn,  allCourse, setProfessor, setCourseName} = useDisplay()
+    const { campus, userObj, me, signedIn,  allCourse, setProfessor, setCourseName} = useDisplay()
 
     const [rows, setRows] = useState([]);
 
@@ -24,7 +24,7 @@ const UserCourses = () => {
                 return (
                     <NavLink to={route}>
                         <ButtonMUI variant="contained" color="primary" onClick={(e) => {
-                            if (!signedIn) {
+                            if (!me) {
                                 alert("Please Sign In First");
                                 return;
                             }
@@ -57,7 +57,7 @@ const UserCourses = () => {
 
     useEffect(() => {
         if (allCourse) {
-            setRows(allCourse.filter(value => value.author === userObj.name).map((val, i) => {
+            setRows(allCourse.filter(value => value.author === me).map((val, i) => {
                 return (
                     {id: i, profName: val.prof, courseName: val.name.split('_')[1]}
                 )

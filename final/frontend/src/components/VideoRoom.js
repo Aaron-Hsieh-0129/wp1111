@@ -3,7 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
 import { useDisplay } from "../containers/hooks/useDisplay";
-import { Button } from "antd";
+
+
 
 const VideoRoom = () => {
     const navigate = useNavigate();
@@ -33,8 +34,7 @@ const VideoRoom = () => {
 
     return (
         <div ref={meeting} style={{ width: "100vw", height: "100vh" }}>
-            <Button>asdasd</Button>
-      </div>
+        </div>
     )
 };
 

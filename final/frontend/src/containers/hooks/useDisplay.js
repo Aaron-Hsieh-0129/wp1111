@@ -5,8 +5,14 @@ import { CAMPUS_QUERY, COURSE_QUERY
     , COURSE_SUBSCRIPTION, SEMESTER_SUBSCRIPTION, CHATBOX_SUBSCRIPTION, MESSAGE_SUBSCRIPTION } from "../../graphql"
 import { message } from 'antd'
 
-const LOCALSTORAGE_KEY = "save-me";
-const saveMe = localStorage.getItem(LOCALSTORAGE_KEY);
+const LOCALSTORAGE_ME = "save-me";
+const saveMe = localStorage.getItem(LOCALSTORAGE_ME);
+
+const LOCALSTORAGE_COURSENAME = "save-courseName"
+const saveCourseName = localStorage.getItem(LOCALSTORAGE_COURSENAME);
+
+const LOCALSTORAGE_PROFNAME = "save-profName"
+const savePROFName = localStorage.getItem(LOCALSTORAGE_PROFNAME);
 
 const DisplayContext = createContext({
     status: {},
@@ -38,6 +44,9 @@ const DisplayContext = createContext({
     topic: "",
     setTopic: () => {},
 
+    chatBoxes: [],
+    setChatBoxes: () => {},
+
     display: "",
     setDisplay: () => {},
 
@@ -56,18 +65,20 @@ const DisplayProvider = (props) => {
 
     const [allCourse, setAllCourse] = useState([]);
 
-    const [me, setMe] = useState(''); // useState(saveMe || 'Jane');
+    const [me, setMe] = useState(saveMe || ''); // useState(saveMe || 'Jane');
 
     const [userObj, setUserObj] = useState({});
-    const [professor, setProfessor] = useState("")
+    const [professor, setProfessor] = useState(savePROFName || "")
     const [signedIn, setSignedIn] = useState(false);
 
     const [campus, setCampus] = useState("NTU")
     const [messages, setMessages] = useState([]);
-    const [courseName, setCourseName] = useState('網路服務程式設計')
+    const [courseName, setCourseName] = useState(saveCourseName || '')
 
     const [semester, setSemester] = useState('')
     const [topic, setTopic] = useState('')
+
+    const [chatBoxes, setChatBoxes] = useState([])
 
     const [hasChosenCourse, setHasChosenCourse] = useState(false);
 
@@ -98,11 +109,26 @@ const DisplayProvider = (props) => {
         }
       }
 
+    // useEffect(() => {
+    //     if (signedIn) {
+    //         localStorage.setItem(LOCALSTORAGE_ME, me);
+    //     }
+    // }, [signedIn]);
     useEffect(() => {
-        if (signedIn) {
-            localStorage.setItem(LOCALSTORAGE_KEY, me);
-        }
-    }, [signedIn]);
+        localStorage.setItem(LOCALSTORAGE_ME, me);
+        setChatBoxes([])
+        // setCourseName('')
+        // setProfessor('')
+    }, [me])
+
+    useEffect(() => {
+        localStorage.setItem(LOCALSTORAGE_COURSENAME, courseName);
+        // console.log()
+    }, [courseName])
+
+    useEffect(() => {
+        localStorage.setItem(LOCALSTORAGE_PROFNAME, professor)
+    }, [professor])
 
     return(
         <DisplayContext.Provider
@@ -135,6 +161,9 @@ const DisplayProvider = (props) => {
 
                 topic,
                 setTopic,
+
+                chatBoxes,
+                setChatBoxes,
 
                 display,
                 setDisplay,

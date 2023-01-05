@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useDisplay } from './containers/hooks/useDisplay';
 import ChatRoom from './containers/ChatRoom';
 import VideoRoom from './components/VideoRoom';
+import VideoChatRoom from './components/VideoChatRoom';
 
 const Wrapper = styled.div `
   display: flex;
@@ -29,7 +30,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/chatroom/:id" element={<ChatRoom />} />
-                <Route path="/chatroom/:id/:roomID" element={<VideoRoom />} />
+                <Route path="/chatroom/:id/:roomID" element={<VideoChatRoom />} />
             </Routes>
         </Router> 
     );

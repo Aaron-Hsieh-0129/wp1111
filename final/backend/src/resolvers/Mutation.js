@@ -71,7 +71,6 @@ const Mutation = {
     else {
       semester = course.semesters[semester]
     }
-    console.log(semester)
     let newChatBox = await semester.chatboxes.findIndex(x =>  x.name == [integratedName, chatboxName].join('_') );
     if (newChatBox == -1) {
       // newChatBox = { name:  [integratedName, chatboxName].join('_')}
