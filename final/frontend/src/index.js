@@ -28,7 +28,7 @@ const httpLink = new HttpLink({
 
 // Create a WebSocket link:
 const wsLink = new GraphQLWsLink(createClient({
-    url: 'ws://localhost:4010/subscriptions',
+    url: 'ws://localhost:4010/graphql',
     options: { reconnect: true },
 }));
 
