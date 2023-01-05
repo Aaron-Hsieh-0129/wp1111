@@ -21,14 +21,24 @@ import { BrowserRouter } from "react-router-dom";
 //   cache: new InMemoryCache(),
 // })
 
+const httpURI = process.env.NODE_ENV === "production" 
+                ? "/graphql" 
+                : "http://localhost:4010/graphql";
+
+const WS_URL = process.env.NODE_ENV === "production" 
+                ? window.location.origin.replace(/^http/, "ws") 
+                : "ws://localhost:4010/graphql";
+
 // Create an http link:
 const httpLink = new HttpLink({
-    uri: 'http://localhost:4010/graphql',
+    // uri: 'http://localhost:4010/graphql',
+    uri: {httpURI}
 });
 
 // Create a WebSocket link:
 const wsLink = new GraphQLWsLink(createClient({
-    url: 'ws://localhost:4010/graphql',
+    // url: 'ws://localhost:4010/graphql',
+    url: {WS_URL},
     options: { reconnect: true },
 }));
 
@@ -39,8 +49,8 @@ const link = split(
     ({ query }) => {
         const definition = getMainDefinition(query);
         return (
-        definition.kind === 'OperationDefinition' &&
-        definition.operation === 'subscription'
+            definition.kind === 'OperationDefinition' &&
+            definition.operation === 'subscription'
         );
     },
     wsLink,
