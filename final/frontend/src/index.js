@@ -20,26 +20,15 @@ import { BrowserRouter } from "react-router-dom";
 //   uri: 'http://localhost:4010/graphql',
 //   cache: new InMemoryCache(),
 // })
-const API_ROOT =
-  process.env.NODE_ENV === "production"
-    ? "/graphql"
-    : "http://localhost:4010/graphql";
-
-const WS_URL =
-  process.env.NODE_ENV === "production"
-    ? window.location.origin.replace(/^http/, "ws")
-    : "ws://localhost:4010/graphql";
 
 // Create an http link:
 const httpLink = new HttpLink({
-    // uri: 'http://localhost:4010/graphql',
-    uri: {API_ROOT},
+    uri: 'http://localhost:4010/graphql',
 });
 
 // Create a WebSocket link:
 const wsLink = new GraphQLWsLink(createClient({
-    // url: 'ws://localhost:4010/graphql',
-    url: {WS_URL},
+    url: 'ws://localhost:4010/subscriptions',
     options: { reconnect: true },
 }));
 

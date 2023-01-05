@@ -16,6 +16,26 @@ import Course from './resolvers/Course'
 import Semester from './resolvers/Semester'
 import ChatBox from './resolvers/ChatBox';
 
+import mongo from './mongo';
+import path from "path";
+import express from "express";
+import cors from "cors";
+import { Router } from 'express';
+
+mongo.connect();
+
+const port = process.env.PORT | 4010;
+const app = express();
+if (process.env.NODE_ENV === "production") {
+    const __dirname = path.resolve();
+    app.use(express.static(path.join(__dirname, "../frontend", "build")));
+    app.get("/*", function (req, res) {
+        res.sendFile(path.join(__dirname, "../frontend", "build", "index.html"));
+    });
+}
+
+
+
 // const pubsub = new PubSub();
 const pubsub = createPubSub();
 
@@ -60,7 +80,9 @@ const yoga = createYoga({
   landingPage: false
 })
 
-const server = createServer(yoga)
+app.use('/graphql', yoga);
+
+const server = createServer(app)
 // server.listen({ port: process.env.PORT | 4000 }, () => {
 //   console.log(`The server is up on port ${process.env.PORT | 4000}!`);
 // });
@@ -103,4 +125,6 @@ useServer(
   wsServer,
 )
 
-export default server
+server.listen(port, () => {
+    console.log(`Server is up on port ${port}.`)
+})

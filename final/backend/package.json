@@ -24,8 +24,8 @@
     "mongoose": "^6.7.5"
   },
   "scripts": {
-    "server": "nodemon src/index.js --ext js,graphql --exec babel-node",
+    "server": "nodemon src/server.js --ext js,graphql --exec babel-node",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "NODE_ENV=production babel-node src/index.js"
+    "deploy": "NODE_ENV=production babel-node src/server.js"
   }
 }

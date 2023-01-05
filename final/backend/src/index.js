@@ -10,8 +10,6 @@ mongo.connect();
 const app = express();
 const router = Router();
 app.use(cors());
-app.use(express.json());
-app.use("/", router)
 
 const port = process.env.PORT | 4010;
 const port2 = 4000;
@@ -20,7 +18,7 @@ if (process.env.NODE_ENV === "production") {
     const __dirname = path.resolve();
     app.use(express.static(path.join(__dirname, "../frontend", "build")));
     app.get("/*", function (req, res) {
-      res.sendFile(path.join(__dirname, "../frontend", "build", "index.html"));
+        res.sendFile(path.join(__dirname, "../frontend", "build", "index.html"));
     });
 }
 
