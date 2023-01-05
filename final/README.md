@@ -2,6 +2,10 @@
 
 Group 44
 
+* Deployed連結：https://wp1111-production-0559.up.railway.app/
+
+* Demo連結: https://youtu.be/6AjFAmzCT_E
+  
 * 安裝測試步驟
   * 在final/ 底下使用 `yarn install:prod`會自動在前後端安裝
   * 在final/backend/ 底下新增`.env`檔，檔案內需要`MONGO_URL=<your backend>`
@@ -31,7 +35,7 @@ Group 44
   * B08209006 謝晉維
     * Google帳號登入
     * 首頁前端
-  * B08704244 蔡鉎驊
+  * B08701244 蔡鉎驊
     * 聊天室——對話功能、視訊功能
     * 後端（使用GraphQL以及MongoDB）
 
@@ -39,4 +43,9 @@ Group 44
   * 因為一開始我們都是在另一個repo做的，最後才丟到wp111底下，若有需要參考可以看：<https://github.com/Aaron-Hsieh-0129/WP-final-project>
   
 * 心得：
-  
+  * B08209006: 首先感謝組員carry，在我遇到一堆bug的時候跟我一起討論，幫了我很多忙，還一起好多天只睡幾小時趕專題。
+這個學期在這門課受益良多，從完全不會寫網頁到可以合作建立一個專題，非常有成就感。雖然做專題跟寫作業的時候還是很匆忙又一直出錯，花了超多時間，但看到有些微成果讓我很開心。
+在期末專題學到很多，尤其是怎麼用github跟別人一起合作寫code，雖然很痛苦但應該算有很大的收穫吧。然後deployment一直沒成功QQ，希望來得及。
+最後感謝老師及助教一學期的耐心教導，讓我順利（？）入門網路服務開發的過程。
+  * B08701244: 
+  這次專題學到很多，像是把上課所教的技術熟練活用，原本不熟的 Graphql 的Subscription 被我 Debug到很熟，也學到如何串接其他套件服務提供的 API 優化我們的網頁，另外還有整個專案合作的過程，感謝組員包容我常常不小心 merge 到錯誤的版本。
